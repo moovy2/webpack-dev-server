@@ -26,7 +26,7 @@ describe("client option", () => {
           webSocketServer: "sockjs",
           port,
         },
-        compiler
+        compiler,
       );
 
       await server.start();
@@ -61,7 +61,7 @@ describe("client option", () => {
       expect(response.status()).toMatchSnapshot("response status");
 
       expect(consoleMessages.map((message) => message.text())).toMatchSnapshot(
-        "console messages"
+        "console messages",
       );
 
       expect(pageErrors).toMatchSnapshot("page errors");
@@ -94,7 +94,7 @@ describe("client option", () => {
           },
           port,
         },
-        compiler
+        compiler,
       );
 
       await server.start();
@@ -123,13 +123,13 @@ describe("client option", () => {
         `http://127.0.0.1:${port}/foo/test/bar`,
         {
           waitUntil: "networkidle0",
-        }
+        },
       );
 
       expect(response.status()).toMatchSnapshot("response status");
 
       expect(consoleMessages.map((message) => message.text())).toMatchSnapshot(
-        "console messages"
+        "console messages",
       );
 
       expect(pageErrors).toMatchSnapshot("page errors");
@@ -152,7 +152,7 @@ describe("client option", () => {
           client: false,
           port,
         },
-        compiler
+        compiler,
       );
 
       await server.start();
@@ -186,10 +186,64 @@ describe("client option", () => {
       expect(await response.text()).not.toMatch(/client\/index\.js/);
 
       expect(consoleMessages.map((message) => message.text())).toMatchSnapshot(
-        "console messages"
+        "console messages",
       );
 
       expect(pageErrors).toMatchSnapshot("page errors");
+    });
+  });
+
+  describe("override client entry", () => {
+    let compiler;
+    let server;
+    let page;
+    let browser;
+
+    class OverrideServer extends Server {
+      // eslint-disable-next-line class-methods-use-this
+      getClientEntry() {
+        return require.resolve(
+          "../fixtures/custom-client/CustomClientEntry.js",
+        );
+      }
+      // eslint-disable-next-line class-methods-use-this
+      getClientHotEntry() {
+        return require.resolve(
+          "../fixtures/custom-client/CustomClientHotEntry.js",
+        );
+      }
+    }
+
+    beforeEach(async () => {
+      compiler = webpack(config);
+
+      server = new OverrideServer(
+        {
+          port,
+        },
+        compiler,
+      );
+
+      await server.start();
+
+      ({ page, browser } = await runBrowser());
+    });
+
+    afterEach(async () => {
+      await browser.close();
+      await server.stop();
+    });
+
+    it("should disable client entry", async () => {
+      const response = await page.goto(`http://127.0.0.1:${port}/main.js`, {
+        waitUntil: "networkidle0",
+      });
+
+      expect(response.status()).toMatchSnapshot("response status");
+
+      const content = await response.text();
+      expect(content).toContain("CustomClientEntry.js");
+      expect(content).toContain("CustomClientHotEntry.js");
     });
   });
 
@@ -215,7 +269,7 @@ describe("client option", () => {
         title: 'as a path ("sockjs")',
         client: {
           webSocketTransport: require.resolve(
-            "../../client-src/clients/SockJSClient"
+            "../../client-src/clients/SockJSClient",
           ),
         },
         webSocketServer: "sockjs",
@@ -225,7 +279,7 @@ describe("client option", () => {
         title: 'as a path ("ws")',
         client: {
           webSocketTransport: require.resolve(
-            "../../client-src/clients/WebSocketClient"
+            "../../client-src/clients/WebSocketClient",
           ),
         },
         webSocketServer: "ws",
@@ -261,7 +315,7 @@ describe("client option", () => {
               client: data.client,
               port,
             },
-            compiler
+            compiler,
           );
 
           let thrownError;
@@ -274,7 +328,7 @@ describe("client option", () => {
 
           if (data.shouldThrow) {
             expect(thrownError.message).toMatch(
-              /client\.webSocketTransport must be a string/
+              /client\.webSocketTransport must be a string/,
             );
           }
 

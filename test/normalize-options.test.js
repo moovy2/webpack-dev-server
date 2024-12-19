@@ -3,7 +3,6 @@
 const webpack = require("webpack");
 const { klona } = require("klona/full");
 const Server = require("../lib/Server");
-const isWebpack5 = require("./helpers/isWebpack5");
 const port = require("./ports-map")["normalize-option"];
 
 describe("normalize options", () => {
@@ -181,16 +180,12 @@ describe("normalize options", () => {
       multiCompiler: false,
       options: {},
       webpackConfig: {
-        infrastructureLogging: isWebpack5
-          ? {
-              level: "verbose",
-              stream: {
-                write: () => {},
-              },
-            }
-          : {
-              level: "verbose",
-            },
+        infrastructureLogging: {
+          level: "verbose",
+          stream: {
+            write: () => {},
+          },
+        },
       },
     },
     {
@@ -203,16 +198,12 @@ describe("normalize options", () => {
         },
       },
       webpackConfig: {
-        infrastructureLogging: isWebpack5
-          ? {
-              level: "verbose",
-              stream: {
-                write: () => {},
-              },
-            }
-          : {
-              level: "verbose",
-            },
+        infrastructureLogging: {
+          level: "verbose",
+          stream: {
+            write: () => {},
+          },
+        },
       },
     },
     {
@@ -390,6 +381,19 @@ describe("normalize options", () => {
       },
     },
     {
+      title: "static is an object with staticOptions",
+      multiCompiler: false,
+      options: {
+        static: {
+          directory: "/static/path",
+          staticOptions: {
+            redirect: true,
+            immutable: true,
+          },
+        },
+      },
+    },
+    {
       title: "static directory is an absolute url and throws error",
       multiCompiler: false,
       options: {
@@ -465,12 +469,25 @@ describe("normalize options", () => {
       },
     },
     {
-      title: "static serveIndex is an object",
+      title: "static serveIndex is an object with icons false",
       multiCompiler: false,
       options: {
         static: {
           serveIndex: {
             icons: false,
+          },
+        },
+      },
+    },
+    {
+      title: "static serveIndex is an object more options",
+      multiCompiler: false,
+      options: {
+        static: {
+          serveIndex: {
+            hidden: true,
+            stylesheet: "https://example.com/style.css",
+            view: "details",
           },
         },
       },
@@ -596,28 +613,32 @@ describe("normalize options", () => {
         errored = error;
       }
 
-      if (item.throws) {
-        expect(errored.message).toMatch(item.throws);
-      } else {
-        const optionsForSnapshot = klona(server.options);
+      try {
+        if (item.throws) {
+          expect(errored.message).toMatch(item.throws);
+        } else {
+          const optionsForSnapshot = klona(server.options);
 
-        optionsForSnapshot.port = "<auto>";
+          optionsForSnapshot.port = "<auto>";
 
-        if (optionsForSnapshot.static.length > 0) {
-          optionsForSnapshot.static.forEach((i) => {
-            i.directory = i.directory
-              .replace(/\\/g, "/")
-              .replace(
-                new RegExp(process.cwd().replace(/\\/g, "/"), "g"),
-                "<cwd>"
-              );
-          });
+          if (optionsForSnapshot.static.length > 0) {
+            optionsForSnapshot.static.forEach((i) => {
+              i.directory = i.directory
+                .replace(/\\/g, "/")
+                .replace(
+                  new RegExp(process.cwd().replace(/\\/g, "/"), "g"),
+                  "<cwd>",
+                );
+            });
+          }
+
+          expect(optionsForSnapshot).toMatchSnapshot();
         }
-
-        expect(optionsForSnapshot).toMatchSnapshot();
+      } catch (error) {
+        throw error;
+      } finally {
+        await server.stop();
       }
-
-      await server.stop();
     });
   });
 });

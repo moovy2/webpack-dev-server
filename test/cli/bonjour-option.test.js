@@ -1,37 +1,37 @@
 "use strict";
 
-const { promisify } = require("util");
-const rimraf = require("rimraf");
+const fs = require("fs");
 const Server = require("../../lib/Server");
 const { testBin, normalizeStderr } = require("../helpers/test-bin");
 const port = require("../ports-map")["cli-bonjour"];
 
-const del = promisify(rimraf);
 const defaultCertificateDir = Server.findCacheDir();
 
 describe('"bonjour" CLI option', () => {
   beforeEach(async () => {
-    await del(defaultCertificateDir);
+    fs.rmSync(defaultCertificateDir, { recursive: true, force: true });
   });
 
   it('should work using "--bonjour"', async () => {
-    const { exitCode, stderr } = await testBin(["--port", port, "--bonjour"]);
+    const { exitCode, stderr } = await testBin(["--port", port, "--bonjour"], {
+      outputKillStr: /Broadcasting/,
+    });
 
     expect(exitCode).toEqual(0);
     expect(normalizeStderr(stderr, { ipv6: true })).toMatchSnapshot();
   });
 
-  it('should work using "--bonjour and --https"', async () => {
-    const { exitCode, stderr } = await testBin([
-      "--port",
-      port,
-      "--bonjour",
-      "--https",
-    ]);
+  it('should work using "--bonjour and --server-type=https"', async () => {
+    const { exitCode, stderr } = await testBin(
+      ["--port", port, "--bonjour", "--server-type=https"],
+      {
+        outputKillStr: /Broadcasting/,
+      },
+    );
 
     expect(exitCode).toEqual(0);
     expect(
-      normalizeStderr(stderr, { ipv6: true, https: true })
+      normalizeStderr(stderr, { ipv6: true, https: true }),
     ).toMatchSnapshot();
   });
 

@@ -1,9 +1,5 @@
 "use strict";
 
-const webpack = require("webpack");
-
-const isWebpack5 = webpack.version.startsWith("5");
-
 const HTMLContent = `
 <!doctype html>
 <html>
@@ -28,16 +24,12 @@ module.exports = {
   experiments: {
     lazyCompilation: true,
   },
-  infrastructureLogging: isWebpack5
-    ? {
-        level: "info",
-        stream: {
-          write: () => {},
-        },
-      }
-    : {
-        level: "info",
-      },
+  infrastructureLogging: {
+    level: "info",
+    stream: {
+      write: () => {},
+    },
+  },
   plugins: [
     {
       apply(compiler) {
@@ -57,7 +49,7 @@ module.exports = {
               const source = new RawSource(HTMLContent);
 
               compilation.emitAsset(filename, source);
-            }
+            },
           );
         });
       },

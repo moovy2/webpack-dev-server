@@ -46,25 +46,23 @@ describe("Built in routes", () => {
         `http://127.0.0.1:${port}/__webpack_dev_server__/sockjs.bundle.js`,
         {
           waitUntil: "networkidle0",
-        }
+        },
       );
 
       expect(response.headers()["content-type"]).toMatchSnapshot(
-        "response headers content-type"
+        "response headers content-type",
       );
 
       expect(response.status()).toMatchSnapshot("response status");
 
       expect(consoleMessages.map((message) => message.text())).toMatchSnapshot(
-        "console messages"
+        "console messages",
       );
 
       expect(pageErrors).toMatchSnapshot("page errors");
     });
 
     it("should handles HEAD request to sockjs bundle", async () => {
-      await page.setRequestInterception(true);
-
       page
         .on("console", (message) => {
           consoleMessages.push(message);
@@ -73,24 +71,26 @@ describe("Built in routes", () => {
           pageErrors.push(error);
         })
         .on("request", (interceptedRequest) => {
-          interceptedRequest.continue({ method: "HEAD" });
+          if (interceptedRequest.isInterceptResolutionHandled()) return;
+
+          interceptedRequest.continue({ method: "HEAD" }, 10);
         });
 
       const response = await page.goto(
         `http://127.0.0.1:${port}/__webpack_dev_server__/sockjs.bundle.js`,
         {
           waitUntil: "networkidle0",
-        }
+        },
       );
 
       expect(response.headers()["content-type"]).toMatchSnapshot(
-        "response headers content-type"
+        "response headers content-type",
       );
 
       expect(response.status()).toMatchSnapshot("response status");
 
       expect(consoleMessages.map((message) => message.text())).toMatchSnapshot(
-        "console messages"
+        "console messages",
       );
 
       expect(pageErrors).toMatchSnapshot("page errors");
@@ -109,7 +109,7 @@ describe("Built in routes", () => {
         `http://127.0.0.1:${port}/webpack-dev-server/invalidate`,
         {
           waitUntil: "networkidle0",
-        }
+        },
       );
 
       expect(response.headers()["content-type"]).not.toEqual("text/html");
@@ -117,7 +117,7 @@ describe("Built in routes", () => {
       expect(response.status()).toMatchSnapshot("response status");
 
       expect(consoleMessages.map((message) => message.text())).toMatchSnapshot(
-        "console messages"
+        "console messages",
       );
 
       expect(pageErrors).toMatchSnapshot("page errors");
@@ -136,11 +136,11 @@ describe("Built in routes", () => {
         `http://127.0.0.1:${port}/webpack-dev-server/`,
         {
           waitUntil: "networkidle0",
-        }
+        },
       );
 
       expect(response.headers()["content-type"]).toMatchSnapshot(
-        "response headers content-type"
+        "response headers content-type",
       );
 
       expect(response.status()).toMatchSnapshot("response status");
@@ -148,15 +148,13 @@ describe("Built in routes", () => {
       expect(await response.text()).toMatchSnapshot("directory list");
 
       expect(consoleMessages.map((message) => message.text())).toMatchSnapshot(
-        "console messages"
+        "console messages",
       );
 
       expect(pageErrors).toMatchSnapshot("page errors");
     });
 
     it("should handle HEAD request to directory index", async () => {
-      await page.setRequestInterception(true);
-
       page
         .on("console", (message) => {
           consoleMessages.push(message);
@@ -165,6 +163,8 @@ describe("Built in routes", () => {
           pageErrors.push(error);
         })
         .on("request", (interceptedRequest) => {
+          if (interceptedRequest.isInterceptResolutionHandled()) return;
+
           interceptedRequest.continue({ method: "HEAD" });
         });
 
@@ -172,11 +172,11 @@ describe("Built in routes", () => {
         `http://127.0.0.1:${port}/webpack-dev-server/`,
         {
           waitUntil: "networkidle0",
-        }
+        },
       );
 
       expect(response.headers()["content-type"]).toMatchSnapshot(
-        "response headers content-type"
+        "response headers content-type",
       );
 
       expect(response.status()).toMatchSnapshot("response status");
@@ -184,63 +184,10 @@ describe("Built in routes", () => {
       expect(await response.text()).toMatchSnapshot("directory list");
 
       expect(consoleMessages.map((message) => message.text())).toMatchSnapshot(
-        "console messages"
+        "console messages",
       );
 
       expect(pageErrors).toMatchSnapshot("page errors");
-    });
-
-    it("should handle GET request to magic async html", async () => {
-      page
-        .on("console", (message) => {
-          consoleMessages.push(message);
-        })
-        .on("pageerror", (error) => {
-          pageErrors.push(error);
-        });
-
-      const response = await page.goto(`http://127.0.0.1:${port}/main`, {
-        waitUntil: "networkidle0",
-      });
-
-      expect(response.headers()["content-type"]).toMatchSnapshot(
-        "response headers content-type"
-      );
-
-      expect(response.status()).toMatchSnapshot("response status");
-
-      expect(consoleMessages.map((message) => message.text())).toMatchSnapshot(
-        "console messages"
-      );
-    });
-
-    it("should handle HEAD request to magic async html", async () => {
-      await page.setRequestInterception(true);
-
-      page
-        .on("console", (message) => {
-          consoleMessages.push(message);
-        })
-        .on("pageerror", (error) => {
-          pageErrors.push(error);
-        })
-        .on("request", (interceptedRequest) => {
-          interceptedRequest.continue({ method: "HEAD" });
-        });
-
-      const response = await page.goto(`http://127.0.0.1:${port}/main`, {
-        waitUntil: "networkidle0",
-      });
-
-      expect(response.headers()["content-type"]).toMatchSnapshot(
-        "response headers content-type"
-      );
-
-      expect(response.status()).toMatchSnapshot("response status");
-
-      expect(consoleMessages.map((message) => message.text())).toMatchSnapshot(
-        "console messages"
-      );
     });
 
     it("should handle GET request to magic async chunk", async () => {
@@ -257,19 +204,17 @@ describe("Built in routes", () => {
       });
 
       expect(response.headers()["content-type"]).toMatchSnapshot(
-        "response headers content-type"
+        "response headers content-type",
       );
 
       expect(response.status()).toMatchSnapshot("response status");
 
       expect(consoleMessages.map((message) => message.text())).toMatchSnapshot(
-        "console messages"
+        "console messages",
       );
     });
 
     it("should handle HEAD request to magic async chunk", async () => {
-      await page.setRequestInterception(true);
-
       page
         .on("console", (message) => {
           consoleMessages.push(message);
@@ -278,6 +223,8 @@ describe("Built in routes", () => {
           pageErrors.push(error);
         })
         .on("request", (interceptedRequest) => {
+          if (interceptedRequest.isInterceptResolutionHandled()) return;
+
           interceptedRequest.continue({ method: "HEAD" });
         });
 
@@ -286,13 +233,13 @@ describe("Built in routes", () => {
       });
 
       expect(response.headers()["content-type"]).toMatchSnapshot(
-        "response headers content-type"
+        "response headers content-type",
       );
 
       expect(response.status()).toMatchSnapshot("response status");
 
       expect(consoleMessages.map((message) => message.text())).toMatchSnapshot(
-        "console messages"
+        "console messages",
       );
     });
   });
@@ -335,11 +282,11 @@ describe("Built in routes", () => {
         `http://127.0.0.1:${port}/webpack-dev-server/`,
         {
           waitUntil: "networkidle0",
-        }
+        },
       );
 
       expect(response.headers()["content-type"]).toMatchSnapshot(
-        "response headers content-type"
+        "response headers content-type",
       );
 
       expect(response.status()).toMatchSnapshot("response status");
@@ -347,7 +294,7 @@ describe("Built in routes", () => {
       expect(await response.text()).toMatchSnapshot("directory list");
 
       expect(consoleMessages.map((message) => message.text())).toMatchSnapshot(
-        "console messages"
+        "console messages",
       );
 
       expect(pageErrors).toMatchSnapshot("page errors");

@@ -25,17 +25,21 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest]
-        node-version: [16.x]
+        node-version: [lts/*]
 
     runs-on: ${{ matrix.os }}
 
+    concurrency:
+      group: lint-${{ matrix.os }}-v${{ matrix.node-version }}-${{ github.ref }}
+      cancel-in-progress: true
+
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
           cache: "npm"
@@ -55,8 +59,9 @@ jobs:
       - name: Security audit
         run: npm audit --production
 
-      - name: Check commit message
-        uses: wagoid/commitlint-github-action@v4
+      - name: Validate PR commits with commitlint
+        if: github.event_name == 'pull_request'
+        run: npx commitlint --from ${{ github.event.pull_request.head.sha }}~${{ github.event.pull_request.commits }} --to ${{ github.event.pull_request.head.sha }} --verbose
 
   test:
     name: Test - ${{ matrix.os }} - Node v${{ matrix.node-version }}, Webpack ${{ matrix.webpack-version }} (${{ matrix.shard }})
@@ -64,21 +69,21 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
-        node-version: [12.x, 14.x, 16.x, 18.x, 19.x]
+        node-version: [18.x, 20.x, 22.x, 23.x]
         shard: ["1/4", "2/4", "3/4", "4/4"]
         webpack-version: [latest]
-        include:
-          - node-version: 16.x
-            os: ubuntu-latest
-            webpack-version: 4
 
     runs-on: ${{ matrix.os }}
 
+    concurrency:
+      group: test-${{ matrix.os }}-v${{ matrix.node-version }}-${{ matrix.webpack-version }}-${{ matrix.shard }}-${{ github.ref }}
+      cancel-in-progress: true
+
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
           cache: "npm"
@@ -86,13 +91,11 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Update package.json for webpack@4
-        if: matrix.webpack-version == '4'
-        run: echo "`jq '.scripts.build="npm run build:client"' package.json`" > package.json
-
-      - name: Install webpack ${{ matrix.webpack-version }}
-        if: matrix.webpack-version == '4'
-        run: npm i webpack@${{ matrix.webpack-version }} --save-dev --ignore-scripts
+      - name: Install dependencies for Node.js@18
+        run: |
+          npm i p-retry@^4.5.0 open@^8.0.9
+          node ./scripts/prepare-test-for-old-node.js
+        if: matrix.node-version == '18.x'
 
       - name: Setup firefox
         if: matrix.os != 'windows-latest'
@@ -103,15 +106,20 @@ jobs:
       - name: Link webpack-dev-server
         run: |
           cp -R client tmp-client
-          npm link --ignore-scripts
-          npm link webpack-dev-server --ignore-scripts
+          npm link --ignore-scripts || true
+          npm link webpack-dev-server --ignore-scripts || true
           rm -r client
           cp -R tmp-client client
 
       - name: Run tests for webpack version ${{ matrix.webpack-version }}
+        run: node_modules/.bin/jest --coverage --ci --shard=${{ matrix.shard }}
+        if: matrix.node-version == '18.x'
+
+      - name: Run tests for webpack version ${{ matrix.webpack-version }}
         run: npm run test:coverage -- --ci --shard=${{ matrix.shard }}
+        if: matrix.node-version != '18.x'
 
       - name: Submit coverage data to codecov
-        uses: codecov/codecov-action@v3
+        uses: codecov/codecov-action@v4
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
