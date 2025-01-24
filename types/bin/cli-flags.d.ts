@@ -6,6 +6,7 @@ declare const _exports: {
           multiple: boolean;
           description: string;
           path: string;
+          values?: undefined;
         }
       | {
           description: string;
@@ -114,6 +115,18 @@ declare const _exports: {
     simpleType: string;
     multiple: boolean;
   };
+  "client-overlay-runtime-errors": {
+    configs: {
+      type: string;
+      multiple: boolean;
+      description: string;
+      negatedDescription: string;
+      path: string;
+    }[];
+    description: string;
+    simpleType: string;
+    multiple: boolean;
+  };
   "client-progress": {
     configs: {
       type: string;
@@ -140,6 +153,7 @@ declare const _exports: {
           multiple: boolean;
           description: string;
           path: string;
+          negatedDescription?: undefined;
         }
     )[];
     description: string;
@@ -160,6 +174,7 @@ declare const _exports: {
           multiple: boolean;
           description: string;
           path: string;
+          values?: undefined;
         }
     )[];
     description: string;
@@ -235,6 +250,7 @@ declare const _exports: {
           multiple: boolean;
           path: string;
           type: string;
+          values?: undefined;
         }
     )[];
     description: string;
@@ -290,6 +306,7 @@ declare const _exports: {
           multiple: boolean;
           path: string;
           type: string;
+          values?: undefined;
         }
     )[];
     description: string;
@@ -304,6 +321,7 @@ declare const _exports: {
           description: string;
           negatedDescription: string;
           path: string;
+          values?: undefined;
         }
       | {
           type: string;
@@ -311,6 +329,7 @@ declare const _exports: {
           multiple: boolean;
           description: string;
           path: string;
+          negatedDescription?: undefined;
         }
     )[];
     description: string;
@@ -503,6 +522,7 @@ declare const _exports: {
           multiple: boolean;
           description: string;
           path: string;
+          values?: undefined;
         }
       | {
           type: string;
@@ -547,6 +567,7 @@ declare const _exports: {
           multiple: boolean;
           description: string;
           path: string;
+          negatedDescription?: undefined;
         }
       | {
           type: string;
@@ -633,6 +654,7 @@ declare const _exports: {
           multiple: boolean;
           description: string;
           path: string;
+          values?: undefined;
         }
       | {
           type: string;
@@ -820,6 +842,7 @@ declare const _exports: {
           multiple: boolean;
           description: string;
           path: string;
+          negatedDescription?: undefined;
         }
       | {
           type: string;
@@ -939,12 +962,15 @@ declare const _exports: {
           path: string;
           type: string;
           values: string[];
+          negatedDescription?: undefined;
         }
       | {
           description: string;
           multiple: boolean;
           path: string;
           type: string;
+          negatedDescription?: undefined;
+          values?: undefined;
         }
     )[];
     description: string;
@@ -965,6 +991,7 @@ declare const _exports: {
           multiple: boolean;
           path: string;
           type: string;
+          values?: undefined;
         }
     )[];
     description: string;

@@ -1,6 +1,7 @@
 "use strict";
 
 const path = require("path");
+const util = require("util");
 const request = require("supertest");
 const express = require("express");
 const bodyParser = require("body-parser");
@@ -13,33 +14,38 @@ const [port1, port2, port3, port4] = require("../ports-map")["proxy-option"];
 const WebSocketServer = WebSocket.Server;
 const staticDirectory = path.resolve(__dirname, "../fixtures/proxy-config");
 
-const proxyOptionPathsAsProperties = {
-  "/proxy1": {
+const proxyOptionPathsAsProperties = [
+  {
+    context: "/proxy1",
     target: `http://localhost:${port1}`,
   },
-  "/api/proxy2": {
+  {
+    context: "/api/proxy2",
     target: `http://localhost:${port2}`,
     pathRewrite: { "^/api": "" },
   },
-  "/foo": {
+  {
+    context: "/foo",
     bypass(req) {
-      if (/\.html$/.test(req.path)) {
+      if (/\.html$/.test(req.path || req.url)) {
         return "/index.html";
       }
 
       return null;
     },
   },
-  "/proxyfalse": {
+  {
+    context: "proxyfalse",
     bypass(req) {
-      if (/\/proxyfalse$/.test(req.path)) {
+      if (/\/proxyfalse$/.test(req.path || req.url)) {
         return false;
       }
     },
   },
-  "/proxy/async": {
+  {
+    context: "/proxy/async",
     bypass(req, res) {
-      if (/\/proxy\/async$/.test(req.path)) {
+      if (/\/proxy\/async$/.test(req.path || req.url)) {
         return new Promise((resolve) => {
           setTimeout(() => {
             res.end("proxy async response");
@@ -49,35 +55,56 @@ const proxyOptionPathsAsProperties = {
       }
     },
   },
-  "/bypass-with-target": {
+  {
+    context: "/bypass-with-target",
     target: `http://localhost:${port1}`,
     changeOrigin: true,
     secure: false,
     bypass(req) {
-      if (/\.(html)$/i.test(req.url)) {
+      if (/\.(html)$/i.test(req.path || req.url)) {
         return req.url;
       }
     },
   },
-};
+];
 
-const proxyOption = {
-  context: () => true,
-  target: `http://localhost:${port1}`,
-};
+const proxyOption = [
+  {
+    context: () => true,
+    target: `http://localhost:${port1}`,
+  },
+];
 
+let maxServerListeners = 0;
 const proxyOptionOfArray = [
-  { context: "/proxy1", target: proxyOption.target },
+  { context: "/proxy1", target: `http://localhost:${port1}` },
   function proxy(req, res, next) {
+    if (req != null) {
+      const socket = req.socket != null ? req.socket : req.connection;
+      // @ts-ignore
+      const server = socket != null ? socket.server : null;
+      if (server) {
+        maxServerListeners = Math.max(
+          maxServerListeners,
+          server.listeners("close").length,
+        );
+      }
+    }
     return {
       context: "/api/proxy2",
       target: `http://localhost:${port2}`,
       pathRewrite: { "^/api": "" },
       bypass: () => {
-        if (req && req.query.foo) {
-          res.end(`foo+${next.name}+${typeof next}`);
+        if (req) {
+          const resolveUrl = new URL(req.url, `http://${req.headers.host}`);
+          const params = new URLSearchParams(resolveUrl.search);
+          const foo = params.get("foo");
 
-          return false;
+          if (foo) {
+            res.end(`foo+${next.name}+${typeof next}`);
+
+            return false;
+          }
         }
       },
     };
@@ -90,20 +117,26 @@ const proxyOptionOfArrayWithoutTarget = [
   },
 ];
 
-const proxyWithPath = {
-  "/proxy1": {
+const proxyWithPath = [
+  {
+    context: "/proxy1",
     path: `http://localhost:${port1}`,
     target: `http://localhost:${port1}`,
   },
-};
+];
 
-const proxyWithString = {
-  "/proxy1": `http://localhost:${port1}`,
-};
+const proxyWithString = [
+  {
+    context: "/proxy1",
+    target: `http://localhost:${port1}`,
+  },
+];
 
-const proxyWithRouterAsObject = {
-  router: () => `http://localhost:${port1}`,
-};
+const proxyWithRouterAsObject = [
+  {
+    router: () => `http://localhost:${port1}`,
+  },
+];
 
 describe("proxy option", () => {
   let proxyServer1;
@@ -166,7 +199,7 @@ describe("proxy option", () => {
           proxy: proxyOptionPathsAsProperties,
           port: port3,
         },
-        compiler
+        compiler,
       );
 
       await server.start();
@@ -200,6 +233,26 @@ describe("proxy option", () => {
     });
 
     describe("bypass", () => {
+      it("should log deprecation warning when bypass is used", async () => {
+        const utilSpy = jest.spyOn(util, "deprecate");
+
+        const response = await req.get("/foo/bar.html");
+
+        expect(response.status).toEqual(200);
+        expect(response.text).toContain("Hello");
+
+        const lastCall = utilSpy.mock.calls[utilSpy.mock.calls.length - 1];
+
+        expect(lastCall[1]).toEqual(
+          "Using the 'bypass' option is deprecated. Please use the 'router' or 'context' options. Read more at https://github.com/chimurai/http-proxy-middleware/tree/v2.0.6#http-proxy-middleware-options",
+        );
+        expect(lastCall[2]).toEqual(
+          "DEP_WEBPACK_DEV_SERVER_PROXY_BYPASS_ARGUMENT",
+        );
+
+        utilSpy.mockRestore();
+      });
+
       it("can rewrite a request path", async () => {
         const response = await req.get("/foo/bar.html");
 
@@ -261,7 +314,7 @@ describe("proxy option", () => {
           proxy: proxyOption,
           port: port3,
         },
-        compiler
+        compiler,
       );
 
       await server.start();
@@ -296,7 +349,7 @@ describe("proxy option", () => {
           proxy: proxyWithString,
           port: port3,
         },
-        compiler
+        compiler,
       );
 
       await server.start();
@@ -331,7 +384,7 @@ describe("proxy option", () => {
           proxy: proxyWithPath,
           port: port3,
         },
-        compiler
+        compiler,
       );
 
       await server.start();
@@ -366,7 +419,7 @@ describe("proxy option", () => {
           proxy: proxyWithRouterAsObject,
           port: port3,
         },
-        compiler
+        compiler,
       );
 
       await server.start();
@@ -401,7 +454,7 @@ describe("proxy option", () => {
           proxy: proxyOptionOfArray,
           port: port3,
         },
-        compiler
+        compiler,
       );
 
       await server.start();
@@ -436,6 +489,10 @@ describe("proxy option", () => {
       expect(response.statusCode).toEqual(200);
       expect(response.text).toEqual("foo+next+function");
     });
+
+    it("should not exist multiple close events registered", async () => {
+      expect(maxServerListeners).toBeLessThanOrEqual(1);
+    });
   });
 
   describe("as an array without the `route` option", () => {
@@ -450,7 +507,7 @@ describe("proxy option", () => {
           proxy: proxyOptionOfArrayWithoutTarget,
           port: port3,
         },
-        compiler
+        compiler,
       );
 
       await server.start();
@@ -478,22 +535,24 @@ describe("proxy option", () => {
     let req;
     let listener;
 
-    const proxyTarget = {
-      target: `http://localhost:${port1}`,
-    };
-
     beforeAll(async () => {
       const compiler = webpack(config);
 
       server = new Server(
         {
-          proxy: {
-            "/proxy1": proxyTarget,
-            "/proxy2": proxyTarget,
-          },
+          proxy: [
+            {
+              context: "/proxy1",
+              target: `http://localhost:${port1}`,
+            },
+            {
+              context: "/proxy2",
+              target: `http://localhost:${port1}`,
+            },
+          ],
           port: port3,
         },
-        compiler
+        compiler,
       );
 
       await server.start();
@@ -558,7 +617,7 @@ describe("proxy option", () => {
               ],
               port: port3,
             },
-            compiler
+            compiler,
           );
 
           await server.start();
@@ -605,21 +664,21 @@ describe("proxy option", () => {
     let server;
     let req;
     let listener;
-    const proxyTarget = {
-      target: `http://localhost:${port1}`,
-    };
 
     beforeAll(async () => {
       const compiler = webpack(config);
 
       server = new Server(
         {
-          proxy: {
-            "**": proxyTarget,
-          },
+          proxy: [
+            {
+              context: "**",
+              target: `http://localhost:${port1}`,
+            },
+          ],
           port: port3,
         },
-        compiler
+        compiler,
       );
 
       await server.start();
@@ -720,7 +779,7 @@ describe("proxy option", () => {
 
       expect(response.status).toEqual(200);
       expect(response.headers["content-type"]).toEqual(
-        "application/json; charset=utf-8"
+        "application/json; charset=utf-8",
       );
       expect(response.text).toContain("POST method from proxy (id: 1)");
     });
@@ -742,15 +801,15 @@ describe("proxy option", () => {
 
       server = new Server(
         {
-          proxy: {
-            "*": {
+          proxy: [
+            {
               context: () => true,
               target: `http://localhost:${port1}`,
             },
-          },
+          ],
           port: port3,
         },
-        compiler
+        compiler,
       );
 
       await server.start();
@@ -791,16 +850,17 @@ describe("proxy option", () => {
 
       server = new Server(
         {
-          proxy: {
-            "/my-path": {
+          proxy: [
+            {
+              context: "/my-path",
               target: "http://unknown:1234",
               logProvider: () => customLogProvider,
               logLevel: "error",
             },
-          },
+          ],
           port: port3,
         },
-        compiler
+        compiler,
       );
 
       await server.start();
@@ -842,16 +902,17 @@ describe("proxy option", () => {
 
       server = new Server(
         {
-          proxy: {
-            "/my-path": {
+          proxy: [
+            {
+              context: "my-path",
               target: "http://unknown:1234",
               logProvider: () => customLogProvider,
               logLevel: "silent",
             },
-          },
+          ],
           port: port3,
         },
-        compiler
+        compiler,
       );
 
       await server.start();
@@ -896,15 +957,16 @@ describe("proxy option", () => {
 
       server = new Server(
         {
-          proxy: {
-            "/my-path": {
+          proxy: [
+            {
+              context: "/my-path",
               target: "http://unknown:1234",
               logProvider: () => customLogProvider,
             },
-          },
+          ],
           port: port3,
         },
-        compiler
+        compiler,
       );
 
       await server.start();
@@ -949,15 +1011,16 @@ describe("proxy option", () => {
 
       server = new Server(
         {
-          proxy: {
-            "/my-path": {
+          proxy: [
+            {
+              context: "/my-path",
               target: "http://unknown:1234",
               logProvider: () => customLogProvider,
             },
-          },
+          ],
           port: port3,
         },
-        compiler
+        compiler,
       );
 
       await server.start();

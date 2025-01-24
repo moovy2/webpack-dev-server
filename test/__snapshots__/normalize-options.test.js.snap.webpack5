@@ -1,40 +1,39 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`normalize options allowedHosts is array 1`] = `
-Object {
+{
   "allowedHosts": "all",
   "bonjour": false,
-  "client": Object {
+  "client": {
     "logging": "info",
     "overlay": true,
     "reconnect": 10,
-    "webSocketURL": Object {},
+    "webSocketURL": {},
   },
   "compress": true,
-  "devMiddleware": Object {},
+  "devMiddleware": {},
   "historyApiFallback": false,
   "host": undefined,
   "hot": true,
   "liveReload": true,
-  "magicHtml": true,
-  "open": Array [],
+  "open": [],
   "port": "<auto>",
-  "server": Object {
-    "options": Object {},
+  "server": {
+    "options": {},
     "type": "http",
   },
   "setupExitSignals": true,
-  "static": Array [
-    Object {
+  "static": [
+    {
       "directory": "<cwd>/public",
-      "publicPath": Array [
+      "publicPath": [
         "/",
       ],
-      "serveIndex": Object {
+      "serveIndex": {
         "icons": true,
       },
-      "staticOptions": Object {},
-      "watch": Object {
+      "staticOptions": {},
+      "watch": {
         "alwaysStat": true,
         "atomic": false,
         "followSymlinks": false,
@@ -47,9 +46,9 @@ Object {
       },
     },
   ],
-  "watchFiles": Array [],
-  "webSocketServer": Object {
-    "options": Object {
+  "watchFiles": [],
+  "webSocketServer": {
+    "options": {
       "path": "/ws",
     },
     "type": "ws",
@@ -58,40 +57,39 @@ Object {
 `;
 
 exports[`normalize options allowedHosts is string 1`] = `
-Object {
+{
   "allowedHosts": "all",
   "bonjour": false,
-  "client": Object {
+  "client": {
     "logging": "info",
     "overlay": true,
     "reconnect": 10,
-    "webSocketURL": Object {},
+    "webSocketURL": {},
   },
   "compress": true,
-  "devMiddleware": Object {},
+  "devMiddleware": {},
   "historyApiFallback": false,
   "host": undefined,
   "hot": true,
   "liveReload": true,
-  "magicHtml": true,
-  "open": Array [],
+  "open": [],
   "port": "<auto>",
-  "server": Object {
-    "options": Object {},
+  "server": {
+    "options": {},
     "type": "http",
   },
   "setupExitSignals": true,
-  "static": Array [
-    Object {
+  "static": [
+    {
       "directory": "<cwd>/public",
-      "publicPath": Array [
+      "publicPath": [
         "/",
       ],
-      "serveIndex": Object {
+      "serveIndex": {
         "icons": true,
       },
-      "staticOptions": Object {},
-      "watch": Object {
+      "staticOptions": {},
+      "watch": {
         "alwaysStat": true,
         "atomic": false,
         "followSymlinks": false,
@@ -104,9 +102,9 @@ Object {
       },
     },
   ],
-  "watchFiles": Array [],
-  "webSocketServer": Object {
-    "options": Object {
+  "watchFiles": [],
+  "webSocketServer": {
+    "options": {
       "path": "/ws",
     },
     "type": "ws",
@@ -115,41 +113,40 @@ Object {
 `;
 
 exports[`normalize options client custom webSocketTransport path 1`] = `
-Object {
+{
   "allowedHosts": "auto",
   "bonjour": false,
-  "client": Object {
+  "client": {
     "logging": "info",
     "overlay": true,
     "reconnect": 10,
     "webSocketTransport": "/path/to/custom/client/",
-    "webSocketURL": Object {},
+    "webSocketURL": {},
   },
   "compress": true,
-  "devMiddleware": Object {},
+  "devMiddleware": {},
   "historyApiFallback": false,
   "host": undefined,
   "hot": true,
   "liveReload": true,
-  "magicHtml": true,
-  "open": Array [],
+  "open": [],
   "port": "<auto>",
-  "server": Object {
-    "options": Object {},
+  "server": {
+    "options": {},
     "type": "http",
   },
   "setupExitSignals": true,
-  "static": Array [
-    Object {
+  "static": [
+    {
       "directory": "<cwd>/public",
-      "publicPath": Array [
+      "publicPath": [
         "/",
       ],
-      "serveIndex": Object {
+      "serveIndex": {
         "icons": true,
       },
-      "staticOptions": Object {},
-      "watch": Object {
+      "staticOptions": {},
+      "watch": {
         "alwaysStat": true,
         "atomic": false,
         "followSymlinks": false,
@@ -162,9 +159,9 @@ Object {
       },
     },
   ],
-  "watchFiles": Array [],
-  "webSocketServer": Object {
-    "options": Object {
+  "watchFiles": [],
+  "webSocketServer": {
+    "options": {
       "path": "/ws",
     },
     "type": "ws",
@@ -173,43 +170,42 @@ Object {
 `;
 
 exports[`normalize options client host and port 1`] = `
-Object {
+{
   "allowedHosts": "auto",
   "bonjour": false,
-  "client": Object {
+  "client": {
     "logging": "info",
     "overlay": true,
     "reconnect": 10,
-    "webSocketURL": Object {
+    "webSocketURL": {
       "hostname": "my.host",
       "port": 9000,
     },
   },
   "compress": true,
-  "devMiddleware": Object {},
+  "devMiddleware": {},
   "historyApiFallback": false,
   "host": undefined,
   "hot": true,
   "liveReload": true,
-  "magicHtml": true,
-  "open": Array [],
+  "open": [],
   "port": "<auto>",
-  "server": Object {
-    "options": Object {},
+  "server": {
+    "options": {},
     "type": "http",
   },
   "setupExitSignals": true,
-  "static": Array [
-    Object {
+  "static": [
+    {
       "directory": "<cwd>/public",
-      "publicPath": Array [
+      "publicPath": [
         "/",
       ],
-      "serveIndex": Object {
+      "serveIndex": {
         "icons": true,
       },
-      "staticOptions": Object {},
-      "watch": Object {
+      "staticOptions": {},
+      "watch": {
         "alwaysStat": true,
         "atomic": false,
         "followSymlinks": false,
@@ -222,9 +218,9 @@ Object {
       },
     },
   ],
-  "watchFiles": Array [],
-  "webSocketServer": Object {
-    "options": Object {
+  "watchFiles": [],
+  "webSocketServer": {
+    "options": {
       "path": "/ws",
     },
     "type": "ws",
@@ -233,43 +229,42 @@ Object {
 `;
 
 exports[`normalize options client host and string port 1`] = `
-Object {
+{
   "allowedHosts": "auto",
   "bonjour": false,
-  "client": Object {
+  "client": {
     "logging": "info",
     "overlay": true,
     "reconnect": 10,
-    "webSocketURL": Object {
+    "webSocketURL": {
       "hostname": "my.host",
       "port": 9000,
     },
   },
   "compress": true,
-  "devMiddleware": Object {},
+  "devMiddleware": {},
   "historyApiFallback": false,
   "host": undefined,
   "hot": true,
   "liveReload": true,
-  "magicHtml": true,
-  "open": Array [],
+  "open": [],
   "port": "<auto>",
-  "server": Object {
-    "options": Object {},
+  "server": {
+    "options": {},
     "type": "http",
   },
   "setupExitSignals": true,
-  "static": Array [
-    Object {
+  "static": [
+    {
       "directory": "<cwd>/public",
-      "publicPath": Array [
+      "publicPath": [
         "/",
       ],
-      "serveIndex": Object {
+      "serveIndex": {
         "icons": true,
       },
-      "staticOptions": Object {},
-      "watch": Object {
+      "staticOptions": {},
+      "watch": {
         "alwaysStat": true,
         "atomic": false,
         "followSymlinks": false,
@@ -282,9 +277,9 @@ Object {
       },
     },
   ],
-  "watchFiles": Array [],
-  "webSocketServer": Object {
-    "options": Object {
+  "watchFiles": [],
+  "webSocketServer": {
+    "options": {
       "path": "/ws",
     },
     "type": "ws",
@@ -293,42 +288,41 @@ Object {
 `;
 
 exports[`normalize options client path 1`] = `
-Object {
+{
   "allowedHosts": "auto",
   "bonjour": false,
-  "client": Object {
+  "client": {
     "logging": "info",
     "overlay": true,
     "reconnect": 10,
-    "webSocketURL": Object {
+    "webSocketURL": {
       "pathname": "/custom/path/",
     },
   },
   "compress": true,
-  "devMiddleware": Object {},
+  "devMiddleware": {},
   "historyApiFallback": false,
   "host": undefined,
   "hot": true,
   "liveReload": true,
-  "magicHtml": true,
-  "open": Array [],
+  "open": [],
   "port": "<auto>",
-  "server": Object {
-    "options": Object {},
+  "server": {
+    "options": {},
     "type": "http",
   },
   "setupExitSignals": true,
-  "static": Array [
-    Object {
+  "static": [
+    {
       "directory": "<cwd>/public",
-      "publicPath": Array [
+      "publicPath": [
         "/",
       ],
-      "serveIndex": Object {
+      "serveIndex": {
         "icons": true,
       },
-      "staticOptions": Object {},
-      "watch": Object {
+      "staticOptions": {},
+      "watch": {
         "alwaysStat": true,
         "atomic": false,
         "followSymlinks": false,
@@ -341,9 +335,9 @@ Object {
       },
     },
   ],
-  "watchFiles": Array [],
-  "webSocketServer": Object {
-    "options": Object {
+  "watchFiles": [],
+  "webSocketServer": {
+    "options": {
       "path": "/ws",
     },
     "type": "ws",
@@ -352,42 +346,41 @@ Object {
 `;
 
 exports[`normalize options client path without leading/ending slashes 1`] = `
-Object {
+{
   "allowedHosts": "auto",
   "bonjour": false,
-  "client": Object {
+  "client": {
     "logging": "info",
     "overlay": true,
     "reconnect": 10,
-    "webSocketURL": Object {
+    "webSocketURL": {
       "pathname": "custom/path",
     },
   },
   "compress": true,
-  "devMiddleware": Object {},
+  "devMiddleware": {},
   "historyApiFallback": false,
   "host": undefined,
   "hot": true,
   "liveReload": true,
-  "magicHtml": true,
-  "open": Array [],
+  "open": [],
   "port": "<auto>",
-  "server": Object {
-    "options": Object {},
+  "server": {
+    "options": {},
     "type": "http",
   },
   "setupExitSignals": true,
-  "static": Array [
-    Object {
+  "static": [
+    {
       "directory": "<cwd>/public",
-      "publicPath": Array [
+      "publicPath": [
         "/",
       ],
-      "serveIndex": Object {
+      "serveIndex": {
         "icons": true,
       },
-      "staticOptions": Object {},
-      "watch": Object {
+      "staticOptions": {},
+      "watch": {
         "alwaysStat": true,
         "atomic": false,
         "followSymlinks": false,
@@ -400,9 +393,9 @@ Object {
       },
     },
   ],
-  "watchFiles": Array [],
-  "webSocketServer": Object {
-    "options": Object {
+  "watchFiles": [],
+  "webSocketServer": {
+    "options": {
       "path": "/ws",
     },
     "type": "ws",
@@ -411,41 +404,40 @@ Object {
 `;
 
 exports[`normalize options client.webSocketTransport sockjs string 1`] = `
-Object {
+{
   "allowedHosts": "auto",
   "bonjour": false,
-  "client": Object {
+  "client": {
     "logging": "info",
     "overlay": true,
     "reconnect": 10,
     "webSocketTransport": "sockjs",
-    "webSocketURL": Object {},
+    "webSocketURL": {},
   },
   "compress": true,
-  "devMiddleware": Object {},
+  "devMiddleware": {},
   "historyApiFallback": false,
   "host": undefined,
   "hot": true,
   "liveReload": true,
-  "magicHtml": true,
-  "open": Array [],
+  "open": [],
   "port": "<auto>",
-  "server": Object {
-    "options": Object {},
+  "server": {
+    "options": {},
     "type": "http",
   },
   "setupExitSignals": true,
-  "static": Array [
-    Object {
+  "static": [
+    {
       "directory": "<cwd>/public",
-      "publicPath": Array [
+      "publicPath": [
         "/",
       ],
-      "serveIndex": Object {
+      "serveIndex": {
         "icons": true,
       },
-      "staticOptions": Object {},
-      "watch": Object {
+      "staticOptions": {},
+      "watch": {
         "alwaysStat": true,
         "atomic": false,
         "followSymlinks": false,
@@ -458,9 +450,9 @@ Object {
       },
     },
   ],
-  "watchFiles": Array [],
-  "webSocketServer": Object {
-    "options": Object {
+  "watchFiles": [],
+  "webSocketServer": {
+    "options": {
       "path": "/ws",
     },
     "type": "ws",
@@ -469,41 +461,40 @@ Object {
 `;
 
 exports[`normalize options client.webSocketTransport ws string 1`] = `
-Object {
+{
   "allowedHosts": "auto",
   "bonjour": false,
-  "client": Object {
+  "client": {
     "logging": "info",
     "overlay": true,
     "reconnect": 10,
     "webSocketTransport": "ws",
-    "webSocketURL": Object {},
+    "webSocketURL": {},
   },
   "compress": true,
-  "devMiddleware": Object {},
+  "devMiddleware": {},
   "historyApiFallback": false,
   "host": undefined,
   "hot": true,
   "liveReload": true,
-  "magicHtml": true,
-  "open": Array [],
+  "open": [],
   "port": "<auto>",
-  "server": Object {
-    "options": Object {},
+  "server": {
+    "options": {},
     "type": "http",
   },
   "setupExitSignals": true,
-  "static": Array [
-    Object {
+  "static": [
+    {
       "directory": "<cwd>/public",
-      "publicPath": Array [
+      "publicPath": [
         "/",
       ],
-      "serveIndex": Object {
+      "serveIndex": {
         "icons": true,
       },
-      "staticOptions": Object {},
-      "watch": Object {
+      "staticOptions": {},
+      "watch": {
         "alwaysStat": true,
         "atomic": false,
         "followSymlinks": false,
@@ -516,9 +507,9 @@ Object {
       },
     },
   ],
-  "watchFiles": Array [],
-  "webSocketServer": Object {
-    "options": Object {
+  "watchFiles": [],
+  "webSocketServer": {
+    "options": {
       "path": "/ws",
     },
     "type": "ws",
@@ -527,41 +518,40 @@ Object {
 `;
 
 exports[`normalize options client.webSocketTransport ws string and webSocketServer object 1`] = `
-Object {
+{
   "allowedHosts": "auto",
   "bonjour": false,
-  "client": Object {
+  "client": {
     "logging": "info",
     "overlay": true,
     "reconnect": 10,
     "webSocketTransport": "ws",
-    "webSocketURL": Object {},
+    "webSocketURL": {},
   },
   "compress": true,
-  "devMiddleware": Object {},
+  "devMiddleware": {},
   "historyApiFallback": false,
   "host": undefined,
   "hot": true,
   "liveReload": true,
-  "magicHtml": true,
-  "open": Array [],
+  "open": [],
   "port": "<auto>",
-  "server": Object {
-    "options": Object {},
+  "server": {
+    "options": {},
     "type": "http",
   },
   "setupExitSignals": true,
-  "static": Array [
-    Object {
+  "static": [
+    {
       "directory": "<cwd>/public",
-      "publicPath": Array [
+      "publicPath": [
         "/",
       ],
-      "serveIndex": Object {
+      "serveIndex": {
         "icons": true,
       },
-      "staticOptions": Object {},
-      "watch": Object {
+      "staticOptions": {},
+      "watch": {
         "alwaysStat": true,
         "atomic": false,
         "followSymlinks": false,
@@ -574,9 +564,9 @@ Object {
       },
     },
   ],
-  "watchFiles": Array [],
-  "webSocketServer": Object {
-    "options": Object {
+  "watchFiles": [],
+  "webSocketServer": {
+    "options": {
       "host": "127.0.0.1",
       "path": "/ws",
       "pathname": "/ws",
@@ -587,41 +577,40 @@ Object {
 `;
 
 exports[`normalize options client.webSocketTransport ws string and webSocketServer object with port as string 1`] = `
-Object {
+{
   "allowedHosts": "auto",
   "bonjour": false,
-  "client": Object {
+  "client": {
     "logging": "info",
     "overlay": true,
     "reconnect": 10,
     "webSocketTransport": "ws",
-    "webSocketURL": Object {},
+    "webSocketURL": {},
   },
   "compress": true,
-  "devMiddleware": Object {},
+  "devMiddleware": {},
   "historyApiFallback": false,
   "host": undefined,
   "hot": true,
   "liveReload": true,
-  "magicHtml": true,
-  "open": Array [],
+  "open": [],
   "port": "<auto>",
-  "server": Object {
-    "options": Object {},
+  "server": {
+    "options": {},
     "type": "http",
   },
   "setupExitSignals": true,
-  "static": Array [
-    Object {
+  "static": [
+    {
       "directory": "<cwd>/public",
-      "publicPath": Array [
+      "publicPath": [
         "/",
       ],
-      "serveIndex": Object {
+      "serveIndex": {
         "icons": true,
       },
-      "staticOptions": Object {},
-      "watch": Object {
+      "staticOptions": {},
+      "watch": {
         "alwaysStat": true,
         "atomic": false,
         "followSymlinks": false,
@@ -634,9 +623,9 @@ Object {
       },
     },
   ],
-  "watchFiles": Array [],
-  "webSocketServer": Object {
-    "options": Object {
+  "watchFiles": [],
+  "webSocketServer": {
+    "options": {
       "host": "127.0.0.1",
       "path": "/ws",
       "pathname": "/ws",
@@ -647,41 +636,40 @@ Object {
 `;
 
 exports[`normalize options client.webSocketTransport ws string and webSocketServer ws string 1`] = `
-Object {
+{
   "allowedHosts": "auto",
   "bonjour": false,
-  "client": Object {
+  "client": {
     "logging": "info",
     "overlay": true,
     "reconnect": 10,
     "webSocketTransport": "ws",
-    "webSocketURL": Object {},
+    "webSocketURL": {},
   },
   "compress": true,
-  "devMiddleware": Object {},
+  "devMiddleware": {},
   "historyApiFallback": false,
   "host": undefined,
   "hot": true,
   "liveReload": true,
-  "magicHtml": true,
-  "open": Array [],
+  "open": [],
   "port": "<auto>",
-  "server": Object {
-    "options": Object {},
+  "server": {
+    "options": {},
     "type": "http",
   },
   "setupExitSignals": true,
-  "static": Array [
-    Object {
+  "static": [
+    {
       "directory": "<cwd>/public",
-      "publicPath": Array [
+      "publicPath": [
         "/",
       ],
-      "serveIndex": Object {
+      "serveIndex": {
         "icons": true,
       },
-      "staticOptions": Object {},
-      "watch": Object {
+      "staticOptions": {},
+      "watch": {
         "alwaysStat": true,
         "atomic": false,
         "followSymlinks": false,
@@ -694,9 +682,9 @@ Object {
       },
     },
   ],
-  "watchFiles": Array [],
-  "webSocketServer": Object {
-    "options": Object {
+  "watchFiles": [],
+  "webSocketServer": {
+    "options": {
       "path": "/ws",
     },
     "type": "ws",
@@ -705,42 +693,41 @@ Object {
 `;
 
 exports[`normalize options dev is set 1`] = `
-Object {
+{
   "allowedHosts": "auto",
   "bonjour": false,
-  "client": Object {
+  "client": {
     "logging": "info",
     "overlay": true,
     "reconnect": 10,
-    "webSocketURL": Object {},
+    "webSocketURL": {},
   },
   "compress": true,
-  "devMiddleware": Object {
+  "devMiddleware": {
     "serverSideRender": true,
   },
   "historyApiFallback": false,
   "host": undefined,
   "hot": true,
   "liveReload": true,
-  "magicHtml": true,
-  "open": Array [],
+  "open": [],
   "port": "<auto>",
-  "server": Object {
-    "options": Object {},
+  "server": {
+    "options": {},
     "type": "http",
   },
   "setupExitSignals": true,
-  "static": Array [
-    Object {
+  "static": [
+    {
       "directory": "<cwd>/public",
-      "publicPath": Array [
+      "publicPath": [
         "/",
       ],
-      "serveIndex": Object {
+      "serveIndex": {
         "icons": true,
       },
-      "staticOptions": Object {},
-      "watch": Object {
+      "staticOptions": {},
+      "watch": {
         "alwaysStat": true,
         "atomic": false,
         "followSymlinks": false,
@@ -753,9 +740,9 @@ Object {
       },
     },
   ],
-  "watchFiles": Array [],
-  "webSocketServer": Object {
-    "options": Object {
+  "watchFiles": [],
+  "webSocketServer": {
+    "options": {
       "path": "/ws",
     },
     "type": "ws",
@@ -764,40 +751,39 @@ Object {
 `;
 
 exports[`normalize options hot is false 1`] = `
-Object {
+{
   "allowedHosts": "auto",
   "bonjour": false,
-  "client": Object {
+  "client": {
     "logging": "info",
     "overlay": true,
     "reconnect": 10,
-    "webSocketURL": Object {},
+    "webSocketURL": {},
   },
   "compress": true,
-  "devMiddleware": Object {},
+  "devMiddleware": {},
   "historyApiFallback": false,
   "host": undefined,
   "hot": false,
   "liveReload": true,
-  "magicHtml": true,
-  "open": Array [],
+  "open": [],
   "port": "<auto>",
-  "server": Object {
-    "options": Object {},
+  "server": {
+    "options": {},
     "type": "http",
   },
   "setupExitSignals": true,
-  "static": Array [
-    Object {
+  "static": [
+    {
       "directory": "<cwd>/public",
-      "publicPath": Array [
+      "publicPath": [
         "/",
       ],
-      "serveIndex": Object {
+      "serveIndex": {
         "icons": true,
       },
-      "staticOptions": Object {},
-      "watch": Object {
+      "staticOptions": {},
+      "watch": {
         "alwaysStat": true,
         "atomic": false,
         "followSymlinks": false,
@@ -810,9 +796,9 @@ Object {
       },
     },
   ],
-  "watchFiles": Array [],
-  "webSocketServer": Object {
-    "options": Object {
+  "watchFiles": [],
+  "webSocketServer": {
+    "options": {
       "path": "/ws",
     },
     "type": "ws",
@@ -821,40 +807,39 @@ Object {
 `;
 
 exports[`normalize options hot is only 1`] = `
-Object {
+{
   "allowedHosts": "auto",
   "bonjour": false,
-  "client": Object {
+  "client": {
     "logging": "info",
     "overlay": true,
     "reconnect": 10,
-    "webSocketURL": Object {},
+    "webSocketURL": {},
   },
   "compress": true,
-  "devMiddleware": Object {},
+  "devMiddleware": {},
   "historyApiFallback": false,
   "host": undefined,
   "hot": "only",
   "liveReload": true,
-  "magicHtml": true,
-  "open": Array [],
+  "open": [],
   "port": "<auto>",
-  "server": Object {
-    "options": Object {},
+  "server": {
+    "options": {},
     "type": "http",
   },
   "setupExitSignals": true,
-  "static": Array [
-    Object {
+  "static": [
+    {
       "directory": "<cwd>/public",
-      "publicPath": Array [
+      "publicPath": [
         "/",
       ],
-      "serveIndex": Object {
+      "serveIndex": {
         "icons": true,
       },
-      "staticOptions": Object {},
-      "watch": Object {
+      "staticOptions": {},
+      "watch": {
         "alwaysStat": true,
         "atomic": false,
         "followSymlinks": false,
@@ -867,9 +852,9 @@ Object {
       },
     },
   ],
-  "watchFiles": Array [],
-  "webSocketServer": Object {
-    "options": Object {
+  "watchFiles": [],
+  "webSocketServer": {
+    "options": {
       "path": "/ws",
     },
     "type": "ws",
@@ -878,40 +863,39 @@ Object {
 `;
 
 exports[`normalize options hot is true 1`] = `
-Object {
+{
   "allowedHosts": "auto",
   "bonjour": false,
-  "client": Object {
+  "client": {
     "logging": "info",
     "overlay": true,
     "reconnect": 10,
-    "webSocketURL": Object {},
+    "webSocketURL": {},
   },
   "compress": true,
-  "devMiddleware": Object {},
+  "devMiddleware": {},
   "historyApiFallback": false,
   "host": undefined,
   "hot": true,
   "liveReload": true,
-  "magicHtml": true,
-  "open": Array [],
+  "open": [],
   "port": "<auto>",
-  "server": Object {
-    "options": Object {},
+  "server": {
+    "options": {},
     "type": "http",
   },
   "setupExitSignals": true,
-  "static": Array [
-    Object {
+  "static": [
+    {
       "directory": "<cwd>/public",
-      "publicPath": Array [
+      "publicPath": [
         "/",
       ],
-      "serveIndex": Object {
+      "serveIndex": {
         "icons": true,
       },
-      "staticOptions": Object {},
-      "watch": Object {
+      "staticOptions": {},
+      "watch": {
         "alwaysStat": true,
         "atomic": false,
         "followSymlinks": false,
@@ -924,9 +908,9 @@ Object {
       },
     },
   ],
-  "watchFiles": Array [],
-  "webSocketServer": Object {
-    "options": Object {
+  "watchFiles": [],
+  "webSocketServer": {
+    "options": {
       "path": "/ws",
     },
     "type": "ws",
@@ -935,40 +919,39 @@ Object {
 `;
 
 exports[`normalize options liveReload is false 1`] = `
-Object {
+{
   "allowedHosts": "auto",
   "bonjour": false,
-  "client": Object {
+  "client": {
     "logging": "info",
     "overlay": true,
     "reconnect": 10,
-    "webSocketURL": Object {},
+    "webSocketURL": {},
   },
   "compress": true,
-  "devMiddleware": Object {},
+  "devMiddleware": {},
   "historyApiFallback": false,
   "host": undefined,
   "hot": true,
   "liveReload": false,
-  "magicHtml": true,
-  "open": Array [],
+  "open": [],
   "port": "<auto>",
-  "server": Object {
-    "options": Object {},
+  "server": {
+    "options": {},
     "type": "http",
   },
   "setupExitSignals": true,
-  "static": Array [
-    Object {
+  "static": [
+    {
       "directory": "<cwd>/public",
-      "publicPath": Array [
+      "publicPath": [
         "/",
       ],
-      "serveIndex": Object {
+      "serveIndex": {
         "icons": true,
       },
-      "staticOptions": Object {},
-      "watch": Object {
+      "staticOptions": {},
+      "watch": {
         "alwaysStat": true,
         "atomic": false,
         "followSymlinks": false,
@@ -981,9 +964,9 @@ Object {
       },
     },
   ],
-  "watchFiles": Array [],
-  "webSocketServer": Object {
-    "options": Object {
+  "watchFiles": [],
+  "webSocketServer": {
+    "options": {
       "path": "/ws",
     },
     "type": "ws",
@@ -992,40 +975,39 @@ Object {
 `;
 
 exports[`normalize options liveReload is true 1`] = `
-Object {
+{
   "allowedHosts": "auto",
   "bonjour": false,
-  "client": Object {
+  "client": {
     "logging": "info",
     "overlay": true,
     "reconnect": 10,
-    "webSocketURL": Object {},
+    "webSocketURL": {},
   },
   "compress": true,
-  "devMiddleware": Object {},
+  "devMiddleware": {},
   "historyApiFallback": false,
   "host": undefined,
   "hot": true,
   "liveReload": true,
-  "magicHtml": true,
-  "open": Array [],
+  "open": [],
   "port": "<auto>",
-  "server": Object {
-    "options": Object {},
+  "server": {
+    "options": {},
     "type": "http",
   },
   "setupExitSignals": true,
-  "static": Array [
-    Object {
+  "static": [
+    {
       "directory": "<cwd>/public",
-      "publicPath": Array [
+      "publicPath": [
         "/",
       ],
-      "serveIndex": Object {
+      "serveIndex": {
         "icons": true,
       },
-      "staticOptions": Object {},
-      "watch": Object {
+      "staticOptions": {},
+      "watch": {
         "alwaysStat": true,
         "atomic": false,
         "followSymlinks": false,
@@ -1038,9 +1020,9 @@ Object {
       },
     },
   ],
-  "watchFiles": Array [],
-  "webSocketServer": Object {
-    "options": Object {
+  "watchFiles": [],
+  "webSocketServer": {
+    "options": {
       "path": "/ws",
     },
     "type": "ws",
@@ -1049,40 +1031,39 @@ Object {
 `;
 
 exports[`normalize options multi compiler client.logging should override infrastructureLogging.level 1`] = `
-Object {
+{
   "allowedHosts": "auto",
   "bonjour": false,
-  "client": Object {
+  "client": {
     "logging": "none",
     "overlay": true,
     "reconnect": 10,
-    "webSocketURL": Object {},
+    "webSocketURL": {},
   },
   "compress": true,
-  "devMiddleware": Object {},
+  "devMiddleware": {},
   "historyApiFallback": false,
   "host": undefined,
   "hot": true,
   "liveReload": true,
-  "magicHtml": true,
-  "open": Array [],
+  "open": [],
   "port": "<auto>",
-  "server": Object {
-    "options": Object {},
+  "server": {
+    "options": {},
     "type": "http",
   },
   "setupExitSignals": true,
-  "static": Array [
-    Object {
+  "static": [
+    {
       "directory": "<cwd>/public",
-      "publicPath": Array [
+      "publicPath": [
         "/",
       ],
-      "serveIndex": Object {
+      "serveIndex": {
         "icons": true,
       },
-      "staticOptions": Object {},
-      "watch": Object {
+      "staticOptions": {},
+      "watch": {
         "alwaysStat": true,
         "atomic": false,
         "followSymlinks": false,
@@ -1095,9 +1076,9 @@ Object {
       },
     },
   ],
-  "watchFiles": Array [],
-  "webSocketServer": Object {
-    "options": Object {
+  "watchFiles": [],
+  "webSocketServer": {
+    "options": {
       "path": "/ws",
     },
     "type": "ws",
@@ -1106,40 +1087,39 @@ Object {
 `;
 
 exports[`normalize options multi compiler client.logging should respect infrastructureLogging.level 1`] = `
-Object {
+{
   "allowedHosts": "auto",
   "bonjour": false,
-  "client": Object {
+  "client": {
     "logging": "warn",
     "overlay": true,
     "reconnect": 10,
-    "webSocketURL": Object {},
+    "webSocketURL": {},
   },
   "compress": true,
-  "devMiddleware": Object {},
+  "devMiddleware": {},
   "historyApiFallback": false,
   "host": undefined,
   "hot": true,
   "liveReload": true,
-  "magicHtml": true,
-  "open": Array [],
+  "open": [],
   "port": "<auto>",
-  "server": Object {
-    "options": Object {},
+  "server": {
+    "options": {},
     "type": "http",
   },
   "setupExitSignals": true,
-  "static": Array [
-    Object {
+  "static": [
+    {
       "directory": "<cwd>/public",
-      "publicPath": Array [
+      "publicPath": [
         "/",
       ],
-      "serveIndex": Object {
+      "serveIndex": {
         "icons": true,
       },
-      "staticOptions": Object {},
-      "watch": Object {
+      "staticOptions": {},
+      "watch": {
         "alwaysStat": true,
         "atomic": false,
         "followSymlinks": false,
@@ -1152,9 +1132,9 @@ Object {
       },
     },
   ],
-  "watchFiles": Array [],
-  "webSocketServer": Object {
-    "options": Object {
+  "watchFiles": [],
+  "webSocketServer": {
+    "options": {
       "path": "/ws",
     },
     "type": "ws",
@@ -1163,40 +1143,39 @@ Object {
 `;
 
 exports[`normalize options multi compiler client.logging should respect infrastructureLogging.level 2`] = `
-Object {
+{
   "allowedHosts": "auto",
   "bonjour": false,
-  "client": Object {
+  "client": {
     "logging": "warn",
     "overlay": true,
     "reconnect": 10,
-    "webSocketURL": Object {},
+    "webSocketURL": {},
   },
   "compress": true,
-  "devMiddleware": Object {},
+  "devMiddleware": {},
   "historyApiFallback": false,
   "host": undefined,
   "hot": true,
   "liveReload": true,
-  "magicHtml": true,
-  "open": Array [],
+  "open": [],
   "port": "<auto>",
-  "server": Object {
-    "options": Object {},
+  "server": {
+    "options": {},
     "type": "http",
   },
   "setupExitSignals": true,
-  "static": Array [
-    Object {
+  "static": [
+    {
       "directory": "<cwd>/public",
-      "publicPath": Array [
+      "publicPath": [
         "/",
       ],
-      "serveIndex": Object {
+      "serveIndex": {
         "icons": true,
       },
-      "staticOptions": Object {},
-      "watch": Object {
+      "staticOptions": {},
+      "watch": {
         "alwaysStat": true,
         "atomic": false,
         "followSymlinks": false,
@@ -1209,9 +1188,9 @@ Object {
       },
     },
   ],
-  "watchFiles": Array [],
-  "webSocketServer": Object {
-    "options": Object {
+  "watchFiles": [],
+  "webSocketServer": {
+    "options": {
       "path": "/ws",
     },
     "type": "ws",
@@ -1220,40 +1199,39 @@ Object {
 `;
 
 exports[`normalize options multi compiler client.logging should respect infrastructureLogging.level 3`] = `
-Object {
+{
   "allowedHosts": "auto",
   "bonjour": false,
-  "client": Object {
+  "client": {
     "logging": "warn",
     "overlay": true,
     "reconnect": 10,
-    "webSocketURL": Object {},
+    "webSocketURL": {},
   },
   "compress": true,
-  "devMiddleware": Object {},
+  "devMiddleware": {},
   "historyApiFallback": false,
   "host": undefined,
   "hot": true,
   "liveReload": true,
-  "magicHtml": true,
-  "open": Array [],
+  "open": [],
   "port": "<auto>",
-  "server": Object {
-    "options": Object {},
+  "server": {
+    "options": {},
     "type": "http",
   },
   "setupExitSignals": true,
-  "static": Array [
-    Object {
+  "static": [
+    {
       "directory": "<cwd>/public",
-      "publicPath": Array [
+      "publicPath": [
         "/",
       ],
-      "serveIndex": Object {
+      "serveIndex": {
         "icons": true,
       },
-      "staticOptions": Object {},
-      "watch": Object {
+      "staticOptions": {},
+      "watch": {
         "alwaysStat": true,
         "atomic": false,
         "followSymlinks": false,
@@ -1266,9 +1244,9 @@ Object {
       },
     },
   ],
-  "watchFiles": Array [],
-  "webSocketServer": Object {
-    "options": Object {
+  "watchFiles": [],
+  "webSocketServer": {
+    "options": {
       "path": "/ws",
     },
     "type": "ws",
@@ -1277,40 +1255,39 @@ Object {
 `;
 
 exports[`normalize options multi compiler watchOptions is set 1`] = `
-Object {
+{
   "allowedHosts": "auto",
   "bonjour": false,
-  "client": Object {
+  "client": {
     "logging": "info",
     "overlay": true,
     "reconnect": 10,
-    "webSocketURL": Object {},
+    "webSocketURL": {},
   },
   "compress": true,
-  "devMiddleware": Object {},
+  "devMiddleware": {},
   "historyApiFallback": false,
   "host": undefined,
   "hot": true,
   "liveReload": true,
-  "magicHtml": true,
-  "open": Array [],
+  "open": [],
   "port": "<auto>",
-  "server": Object {
-    "options": Object {},
+  "server": {
+    "options": {},
     "type": "http",
   },
   "setupExitSignals": true,
-  "static": Array [
-    Object {
+  "static": [
+    {
       "directory": "<cwd>/public",
-      "publicPath": Array [
+      "publicPath": [
         "/",
       ],
-      "serveIndex": Object {
+      "serveIndex": {
         "icons": true,
       },
-      "staticOptions": Object {},
-      "watch": Object {
+      "staticOptions": {},
+      "watch": {
         "alwaysStat": true,
         "atomic": false,
         "followSymlinks": false,
@@ -1323,9 +1300,9 @@ Object {
       },
     },
   ],
-  "watchFiles": Array [],
-  "webSocketServer": Object {
-    "options": Object {
+  "watchFiles": [],
+  "webSocketServer": {
+    "options": {
       "path": "/ws",
     },
     "type": "ws",
@@ -1334,40 +1311,39 @@ Object {
 `;
 
 exports[`normalize options no options 1`] = `
-Object {
+{
   "allowedHosts": "auto",
   "bonjour": false,
-  "client": Object {
+  "client": {
     "logging": "info",
     "overlay": true,
     "reconnect": 10,
-    "webSocketURL": Object {},
+    "webSocketURL": {},
   },
   "compress": true,
-  "devMiddleware": Object {},
+  "devMiddleware": {},
   "historyApiFallback": false,
   "host": undefined,
   "hot": true,
   "liveReload": true,
-  "magicHtml": true,
-  "open": Array [],
+  "open": [],
   "port": "<auto>",
-  "server": Object {
-    "options": Object {},
+  "server": {
+    "options": {},
     "type": "http",
   },
   "setupExitSignals": true,
-  "static": Array [
-    Object {
+  "static": [
+    {
       "directory": "<cwd>/public",
-      "publicPath": Array [
+      "publicPath": [
         "/",
       ],
-      "serveIndex": Object {
+      "serveIndex": {
         "icons": true,
       },
-      "staticOptions": Object {},
-      "watch": Object {
+      "staticOptions": {},
+      "watch": {
         "alwaysStat": true,
         "atomic": false,
         "followSymlinks": false,
@@ -1380,9 +1356,9 @@ Object {
       },
     },
   ],
-  "watchFiles": Array [],
-  "webSocketServer": Object {
-    "options": Object {
+  "watchFiles": [],
+  "webSocketServer": {
+    "options": {
       "path": "/ws",
     },
     "type": "ws",
@@ -1391,40 +1367,39 @@ Object {
 `;
 
 exports[`normalize options port string 1`] = `
-Object {
+{
   "allowedHosts": "auto",
   "bonjour": false,
-  "client": Object {
+  "client": {
     "logging": "info",
     "overlay": true,
     "reconnect": 10,
-    "webSocketURL": Object {},
+    "webSocketURL": {},
   },
   "compress": true,
-  "devMiddleware": Object {},
+  "devMiddleware": {},
   "historyApiFallback": false,
   "host": undefined,
   "hot": true,
   "liveReload": true,
-  "magicHtml": true,
-  "open": Array [],
+  "open": [],
   "port": "<auto>",
-  "server": Object {
-    "options": Object {},
+  "server": {
+    "options": {},
     "type": "http",
   },
   "setupExitSignals": true,
-  "static": Array [
-    Object {
+  "static": [
+    {
       "directory": "<cwd>/public",
-      "publicPath": Array [
+      "publicPath": [
         "/",
       ],
-      "serveIndex": Object {
+      "serveIndex": {
         "icons": true,
       },
-      "staticOptions": Object {},
-      "watch": Object {
+      "staticOptions": {},
+      "watch": {
         "alwaysStat": true,
         "atomic": false,
         "followSymlinks": false,
@@ -1437,9 +1412,9 @@ Object {
       },
     },
   ],
-  "watchFiles": Array [],
-  "webSocketServer": Object {
-    "options": Object {
+  "watchFiles": [],
+  "webSocketServer": {
+    "options": {
       "path": "/ws",
     },
     "type": "ws",
@@ -1448,40 +1423,39 @@ Object {
 `;
 
 exports[`normalize options single compiler client.logging should default to infrastructureLogging.level 1`] = `
-Object {
+{
   "allowedHosts": "auto",
   "bonjour": false,
-  "client": Object {
+  "client": {
     "logging": "verbose",
     "overlay": true,
     "reconnect": 10,
-    "webSocketURL": Object {},
+    "webSocketURL": {},
   },
   "compress": true,
-  "devMiddleware": Object {},
+  "devMiddleware": {},
   "historyApiFallback": false,
   "host": undefined,
   "hot": true,
   "liveReload": true,
-  "magicHtml": true,
-  "open": Array [],
+  "open": [],
   "port": "<auto>",
-  "server": Object {
-    "options": Object {},
+  "server": {
+    "options": {},
     "type": "http",
   },
   "setupExitSignals": true,
-  "static": Array [
-    Object {
+  "static": [
+    {
       "directory": "<cwd>/public",
-      "publicPath": Array [
+      "publicPath": [
         "/",
       ],
-      "serveIndex": Object {
+      "serveIndex": {
         "icons": true,
       },
-      "staticOptions": Object {},
-      "watch": Object {
+      "staticOptions": {},
+      "watch": {
         "alwaysStat": true,
         "atomic": false,
         "followSymlinks": false,
@@ -1494,9 +1468,9 @@ Object {
       },
     },
   ],
-  "watchFiles": Array [],
-  "webSocketServer": Object {
-    "options": Object {
+  "watchFiles": [],
+  "webSocketServer": {
+    "options": {
       "path": "/ws",
     },
     "type": "ws",
@@ -1505,40 +1479,39 @@ Object {
 `;
 
 exports[`normalize options single compiler client.logging should override to infrastructureLogging.level 1`] = `
-Object {
+{
   "allowedHosts": "auto",
   "bonjour": false,
-  "client": Object {
+  "client": {
     "logging": "none",
     "overlay": true,
     "reconnect": 10,
-    "webSocketURL": Object {},
+    "webSocketURL": {},
   },
   "compress": true,
-  "devMiddleware": Object {},
+  "devMiddleware": {},
   "historyApiFallback": false,
   "host": undefined,
   "hot": true,
   "liveReload": true,
-  "magicHtml": true,
-  "open": Array [],
+  "open": [],
   "port": "<auto>",
-  "server": Object {
-    "options": Object {},
+  "server": {
+    "options": {},
     "type": "http",
   },
   "setupExitSignals": true,
-  "static": Array [
-    Object {
+  "static": [
+    {
       "directory": "<cwd>/public",
-      "publicPath": Array [
+      "publicPath": [
         "/",
       ],
-      "serveIndex": Object {
+      "serveIndex": {
         "icons": true,
       },
-      "staticOptions": Object {},
-      "watch": Object {
+      "staticOptions": {},
+      "watch": {
         "alwaysStat": true,
         "atomic": false,
         "followSymlinks": false,
@@ -1551,9 +1524,9 @@ Object {
       },
     },
   ],
-  "watchFiles": Array [],
-  "webSocketServer": Object {
-    "options": Object {
+  "watchFiles": [],
+  "webSocketServer": {
+    "options": {
       "path": "/ws",
     },
     "type": "ws",
@@ -1562,40 +1535,39 @@ Object {
 `;
 
 exports[`normalize options single compiler watchOptions is object 1`] = `
-Object {
+{
   "allowedHosts": "auto",
   "bonjour": false,
-  "client": Object {
+  "client": {
     "logging": "info",
     "overlay": true,
     "reconnect": 10,
-    "webSocketURL": Object {},
+    "webSocketURL": {},
   },
   "compress": true,
-  "devMiddleware": Object {},
+  "devMiddleware": {},
   "historyApiFallback": false,
   "host": undefined,
   "hot": true,
   "liveReload": true,
-  "magicHtml": true,
-  "open": Array [],
+  "open": [],
   "port": "<auto>",
-  "server": Object {
-    "options": Object {},
+  "server": {
+    "options": {},
     "type": "http",
   },
   "setupExitSignals": true,
-  "static": Array [
-    Object {
+  "static": [
+    {
       "directory": "<cwd>/public",
-      "publicPath": Array [
+      "publicPath": [
         "/",
       ],
-      "serveIndex": Object {
+      "serveIndex": {
         "icons": true,
       },
-      "staticOptions": Object {},
-      "watch": Object {
+      "staticOptions": {},
+      "watch": {
         "alwaysStat": true,
         "atomic": false,
         "followSymlinks": false,
@@ -1608,9 +1580,9 @@ Object {
       },
     },
   ],
-  "watchFiles": Array [],
-  "webSocketServer": Object {
-    "options": Object {
+  "watchFiles": [],
+  "webSocketServer": {
+    "options": {
       "path": "/ws",
     },
     "type": "ws",
@@ -1619,40 +1591,39 @@ Object {
 `;
 
 exports[`normalize options single compiler watchOptions is object with static watch overriding it 1`] = `
-Object {
+{
   "allowedHosts": "auto",
   "bonjour": false,
-  "client": Object {
+  "client": {
     "logging": "info",
     "overlay": true,
     "reconnect": 10,
-    "webSocketURL": Object {},
+    "webSocketURL": {},
   },
   "compress": true,
-  "devMiddleware": Object {},
+  "devMiddleware": {},
   "historyApiFallback": false,
   "host": undefined,
   "hot": true,
   "liveReload": true,
-  "magicHtml": true,
-  "open": Array [],
+  "open": [],
   "port": "<auto>",
-  "server": Object {
-    "options": Object {},
+  "server": {
+    "options": {},
     "type": "http",
   },
   "setupExitSignals": true,
-  "static": Array [
-    Object {
+  "static": [
+    {
       "directory": "<cwd>/public",
-      "publicPath": Array [
+      "publicPath": [
         "/",
       ],
-      "serveIndex": Object {
+      "serveIndex": {
         "icons": true,
       },
-      "staticOptions": Object {},
-      "watch": Object {
+      "staticOptions": {},
+      "watch": {
         "alwaysStat": true,
         "atomic": false,
         "followSymlinks": false,
@@ -1665,9 +1636,9 @@ Object {
       },
     },
   ],
-  "watchFiles": Array [],
-  "webSocketServer": Object {
-    "options": Object {
+  "watchFiles": [],
+  "webSocketServer": {
+    "options": {
       "path": "/ws",
     },
     "type": "ws",
@@ -1676,40 +1647,39 @@ Object {
 `;
 
 exports[`normalize options single compiler watchOptions is object with static watch true 1`] = `
-Object {
+{
   "allowedHosts": "auto",
   "bonjour": false,
-  "client": Object {
+  "client": {
     "logging": "info",
     "overlay": true,
     "reconnect": 10,
-    "webSocketURL": Object {},
+    "webSocketURL": {},
   },
   "compress": true,
-  "devMiddleware": Object {},
+  "devMiddleware": {},
   "historyApiFallback": false,
   "host": undefined,
   "hot": true,
   "liveReload": true,
-  "magicHtml": true,
-  "open": Array [],
+  "open": [],
   "port": "<auto>",
-  "server": Object {
-    "options": Object {},
+  "server": {
+    "options": {},
     "type": "http",
   },
   "setupExitSignals": true,
-  "static": Array [
-    Object {
+  "static": [
+    {
       "directory": "<cwd>/public",
-      "publicPath": Array [
+      "publicPath": [
         "/",
       ],
-      "serveIndex": Object {
+      "serveIndex": {
         "icons": true,
       },
-      "staticOptions": Object {},
-      "watch": Object {
+      "staticOptions": {},
+      "watch": {
         "alwaysStat": true,
         "atomic": false,
         "followSymlinks": false,
@@ -1722,9 +1692,9 @@ Object {
       },
     },
   ],
-  "watchFiles": Array [],
-  "webSocketServer": Object {
-    "options": Object {
+  "watchFiles": [],
+  "webSocketServer": {
+    "options": {
       "path": "/ws",
     },
     "type": "ws",
@@ -1733,40 +1703,39 @@ Object {
 `;
 
 exports[`normalize options single compiler watchOptions is object with watch false 1`] = `
-Object {
+{
   "allowedHosts": "auto",
   "bonjour": false,
-  "client": Object {
+  "client": {
     "logging": "info",
     "overlay": true,
     "reconnect": 10,
-    "webSocketURL": Object {},
+    "webSocketURL": {},
   },
   "compress": true,
-  "devMiddleware": Object {},
+  "devMiddleware": {},
   "historyApiFallback": false,
   "host": undefined,
   "hot": true,
   "liveReload": true,
-  "magicHtml": true,
-  "open": Array [],
+  "open": [],
   "port": "<auto>",
-  "server": Object {
-    "options": Object {},
+  "server": {
+    "options": {},
     "type": "http",
   },
   "setupExitSignals": true,
-  "static": Array [
-    Object {
+  "static": [
+    {
       "directory": "<cwd>/public",
-      "publicPath": Array [
+      "publicPath": [
         "/",
       ],
-      "serveIndex": Object {
+      "serveIndex": {
         "icons": true,
       },
-      "staticOptions": Object {},
-      "watch": Object {
+      "staticOptions": {},
+      "watch": {
         "alwaysStat": true,
         "atomic": false,
         "followSymlinks": false,
@@ -1779,9 +1748,9 @@ Object {
       },
     },
   ],
-  "watchFiles": Array [],
-  "webSocketServer": Object {
-    "options": Object {
+  "watchFiles": [],
+  "webSocketServer": {
+    "options": {
       "path": "/ws",
     },
     "type": "ws",
@@ -1790,40 +1759,39 @@ Object {
 `;
 
 exports[`normalize options static is an array of static objects 1`] = `
-Object {
+{
   "allowedHosts": "auto",
   "bonjour": false,
-  "client": Object {
+  "client": {
     "logging": "info",
     "overlay": true,
     "reconnect": 10,
-    "webSocketURL": Object {},
+    "webSocketURL": {},
   },
   "compress": true,
-  "devMiddleware": Object {},
+  "devMiddleware": {},
   "historyApiFallback": false,
   "host": undefined,
   "hot": true,
   "liveReload": true,
-  "magicHtml": true,
-  "open": Array [],
+  "open": [],
   "port": "<auto>",
-  "server": Object {
-    "options": Object {},
+  "server": {
+    "options": {},
     "type": "http",
   },
   "setupExitSignals": true,
-  "static": Array [
-    Object {
+  "static": [
+    {
       "directory": "/static/path1",
-      "publicPath": Array [
+      "publicPath": [
         "/",
       ],
-      "serveIndex": Object {
+      "serveIndex": {
         "icons": true,
       },
-      "staticOptions": Object {},
-      "watch": Object {
+      "staticOptions": {},
+      "watch": {
         "alwaysStat": true,
         "atomic": false,
         "followSymlinks": false,
@@ -1835,16 +1803,16 @@ Object {
         "usePolling": false,
       },
     },
-    Object {
+    {
       "directory": "<cwd>/public",
-      "publicPath": Array [
+      "publicPath": [
         "/static/public/path",
       ],
-      "serveIndex": Object {
+      "serveIndex": {
         "icons": true,
       },
-      "staticOptions": Object {},
-      "watch": Object {
+      "staticOptions": {},
+      "watch": {
         "alwaysStat": true,
         "atomic": false,
         "followSymlinks": false,
@@ -1857,9 +1825,9 @@ Object {
       },
     },
   ],
-  "watchFiles": Array [],
-  "webSocketServer": Object {
-    "options": Object {
+  "watchFiles": [],
+  "webSocketServer": {
+    "options": {
       "path": "/ws",
     },
     "type": "ws",
@@ -1868,40 +1836,39 @@ Object {
 `;
 
 exports[`normalize options static is an array of strings 1`] = `
-Object {
+{
   "allowedHosts": "auto",
   "bonjour": false,
-  "client": Object {
+  "client": {
     "logging": "info",
     "overlay": true,
     "reconnect": 10,
-    "webSocketURL": Object {},
+    "webSocketURL": {},
   },
   "compress": true,
-  "devMiddleware": Object {},
+  "devMiddleware": {},
   "historyApiFallback": false,
   "host": undefined,
   "hot": true,
   "liveReload": true,
-  "magicHtml": true,
-  "open": Array [],
+  "open": [],
   "port": "<auto>",
-  "server": Object {
-    "options": Object {},
+  "server": {
+    "options": {},
     "type": "http",
   },
   "setupExitSignals": true,
-  "static": Array [
-    Object {
+  "static": [
+    {
       "directory": "/static/path1",
-      "publicPath": Array [
+      "publicPath": [
         "/",
       ],
-      "serveIndex": Object {
+      "serveIndex": {
         "icons": true,
       },
-      "staticOptions": Object {},
-      "watch": Object {
+      "staticOptions": {},
+      "watch": {
         "alwaysStat": true,
         "atomic": false,
         "followSymlinks": false,
@@ -1913,16 +1880,16 @@ Object {
         "usePolling": false,
       },
     },
-    Object {
+    {
       "directory": "/static/path2",
-      "publicPath": Array [
+      "publicPath": [
         "/",
       ],
-      "serveIndex": Object {
+      "serveIndex": {
         "icons": true,
       },
-      "staticOptions": Object {},
-      "watch": Object {
+      "staticOptions": {},
+      "watch": {
         "alwaysStat": true,
         "atomic": false,
         "followSymlinks": false,
@@ -1935,9 +1902,9 @@ Object {
       },
     },
   ],
-  "watchFiles": Array [],
-  "webSocketServer": Object {
-    "options": Object {
+  "watchFiles": [],
+  "webSocketServer": {
+    "options": {
       "path": "/ws",
     },
     "type": "ws",
@@ -1946,40 +1913,39 @@ Object {
 `;
 
 exports[`normalize options static is an array of strings and static objects 1`] = `
-Object {
+{
   "allowedHosts": "auto",
   "bonjour": false,
-  "client": Object {
+  "client": {
     "logging": "info",
     "overlay": true,
     "reconnect": 10,
-    "webSocketURL": Object {},
+    "webSocketURL": {},
   },
   "compress": true,
-  "devMiddleware": Object {},
+  "devMiddleware": {},
   "historyApiFallback": false,
   "host": undefined,
   "hot": true,
   "liveReload": true,
-  "magicHtml": true,
-  "open": Array [],
+  "open": [],
   "port": "<auto>",
-  "server": Object {
-    "options": Object {},
+  "server": {
+    "options": {},
     "type": "http",
   },
   "setupExitSignals": true,
-  "static": Array [
-    Object {
+  "static": [
+    {
       "directory": "/static/path1",
-      "publicPath": Array [
+      "publicPath": [
         "/",
       ],
-      "serveIndex": Object {
+      "serveIndex": {
         "icons": true,
       },
-      "staticOptions": Object {},
-      "watch": Object {
+      "staticOptions": {},
+      "watch": {
         "alwaysStat": true,
         "atomic": false,
         "followSymlinks": false,
@@ -1991,16 +1957,16 @@ Object {
         "usePolling": false,
       },
     },
-    Object {
+    {
       "directory": "<cwd>/public",
-      "publicPath": Array [
+      "publicPath": [
         "/static/public/path/",
       ],
-      "serveIndex": Object {
+      "serveIndex": {
         "icons": true,
       },
-      "staticOptions": Object {},
-      "watch": Object {
+      "staticOptions": {},
+      "watch": {
         "alwaysStat": true,
         "atomic": false,
         "followSymlinks": false,
@@ -2013,9 +1979,9 @@ Object {
       },
     },
   ],
-  "watchFiles": Array [],
-  "webSocketServer": Object {
-    "options": Object {
+  "watchFiles": [],
+  "webSocketServer": {
+    "options": {
       "path": "/ws",
     },
     "type": "ws",
@@ -2024,40 +1990,39 @@ Object {
 `;
 
 exports[`normalize options static is an object 1`] = `
-Object {
+{
   "allowedHosts": "auto",
   "bonjour": false,
-  "client": Object {
+  "client": {
     "logging": "info",
     "overlay": true,
     "reconnect": 10,
-    "webSocketURL": Object {},
+    "webSocketURL": {},
   },
   "compress": true,
-  "devMiddleware": Object {},
+  "devMiddleware": {},
   "historyApiFallback": false,
   "host": undefined,
   "hot": true,
   "liveReload": true,
-  "magicHtml": true,
-  "open": Array [],
+  "open": [],
   "port": "<auto>",
-  "server": Object {
-    "options": Object {},
+  "server": {
+    "options": {},
     "type": "http",
   },
   "setupExitSignals": true,
-  "static": Array [
-    Object {
+  "static": [
+    {
       "directory": "/static/path",
-      "publicPath": Array [
+      "publicPath": [
         "/",
       ],
-      "serveIndex": Object {
+      "serveIndex": {
         "icons": true,
       },
-      "staticOptions": Object {},
-      "watch": Object {
+      "staticOptions": {},
+      "watch": {
         "alwaysStat": true,
         "atomic": false,
         "followSymlinks": false,
@@ -2070,9 +2035,68 @@ Object {
       },
     },
   ],
-  "watchFiles": Array [],
-  "webSocketServer": Object {
-    "options": Object {
+  "watchFiles": [],
+  "webSocketServer": {
+    "options": {
+      "path": "/ws",
+    },
+    "type": "ws",
+  },
+}
+`;
+
+exports[`normalize options static is an object with staticOptions 1`] = `
+{
+  "allowedHosts": "auto",
+  "bonjour": false,
+  "client": {
+    "logging": "info",
+    "overlay": true,
+    "reconnect": 10,
+    "webSocketURL": {},
+  },
+  "compress": true,
+  "devMiddleware": {},
+  "historyApiFallback": false,
+  "host": undefined,
+  "hot": true,
+  "liveReload": true,
+  "open": [],
+  "port": "<auto>",
+  "server": {
+    "options": {},
+    "type": "http",
+  },
+  "setupExitSignals": true,
+  "static": [
+    {
+      "directory": "/static/path",
+      "publicPath": [
+        "/",
+      ],
+      "serveIndex": {
+        "icons": true,
+      },
+      "staticOptions": {
+        "immutable": true,
+        "redirect": true,
+      },
+      "watch": {
+        "alwaysStat": true,
+        "atomic": false,
+        "followSymlinks": false,
+        "ignoreInitial": true,
+        "ignorePermissionErrors": true,
+        "ignored": undefined,
+        "interval": undefined,
+        "persistent": true,
+        "usePolling": false,
+      },
+    },
+  ],
+  "watchFiles": [],
+  "webSocketServer": {
+    "options": {
       "path": "/ws",
     },
     "type": "ws",
@@ -2081,33 +2105,32 @@ Object {
 `;
 
 exports[`normalize options static is false 1`] = `
-Object {
+{
   "allowedHosts": "auto",
   "bonjour": false,
-  "client": Object {
+  "client": {
     "logging": "info",
     "overlay": true,
     "reconnect": 10,
-    "webSocketURL": Object {},
+    "webSocketURL": {},
   },
   "compress": true,
-  "devMiddleware": Object {},
+  "devMiddleware": {},
   "historyApiFallback": false,
   "host": undefined,
   "hot": true,
   "liveReload": true,
-  "magicHtml": true,
-  "open": Array [],
+  "open": [],
   "port": "<auto>",
-  "server": Object {
-    "options": Object {},
+  "server": {
+    "options": {},
     "type": "http",
   },
   "setupExitSignals": true,
   "static": false,
-  "watchFiles": Array [],
-  "webSocketServer": Object {
-    "options": Object {
+  "watchFiles": [],
+  "webSocketServer": {
+    "options": {
       "path": "/ws",
     },
     "type": "ws",
@@ -2116,40 +2139,39 @@ Object {
 `;
 
 exports[`normalize options static is string 1`] = `
-Object {
+{
   "allowedHosts": "auto",
   "bonjour": false,
-  "client": Object {
+  "client": {
     "logging": "info",
     "overlay": true,
     "reconnect": 10,
-    "webSocketURL": Object {},
+    "webSocketURL": {},
   },
   "compress": true,
-  "devMiddleware": Object {},
+  "devMiddleware": {},
   "historyApiFallback": false,
   "host": undefined,
   "hot": true,
   "liveReload": true,
-  "magicHtml": true,
-  "open": Array [],
+  "open": [],
   "port": "<auto>",
-  "server": Object {
-    "options": Object {},
+  "server": {
+    "options": {},
     "type": "http",
   },
   "setupExitSignals": true,
-  "static": Array [
-    Object {
+  "static": [
+    {
       "directory": "/static/path",
-      "publicPath": Array [
+      "publicPath": [
         "/",
       ],
-      "serveIndex": Object {
+      "serveIndex": {
         "icons": true,
       },
-      "staticOptions": Object {},
-      "watch": Object {
+      "staticOptions": {},
+      "watch": {
         "alwaysStat": true,
         "atomic": false,
         "followSymlinks": false,
@@ -2162,9 +2184,9 @@ Object {
       },
     },
   ],
-  "watchFiles": Array [],
-  "webSocketServer": Object {
-    "options": Object {
+  "watchFiles": [],
+  "webSocketServer": {
+    "options": {
       "path": "/ws",
     },
     "type": "ws",
@@ -2173,40 +2195,39 @@ Object {
 `;
 
 exports[`normalize options static is true 1`] = `
-Object {
+{
   "allowedHosts": "auto",
   "bonjour": false,
-  "client": Object {
+  "client": {
     "logging": "info",
     "overlay": true,
     "reconnect": 10,
-    "webSocketURL": Object {},
+    "webSocketURL": {},
   },
   "compress": true,
-  "devMiddleware": Object {},
+  "devMiddleware": {},
   "historyApiFallback": false,
   "host": undefined,
   "hot": true,
   "liveReload": true,
-  "magicHtml": true,
-  "open": Array [],
+  "open": [],
   "port": "<auto>",
-  "server": Object {
-    "options": Object {},
+  "server": {
+    "options": {},
     "type": "http",
   },
   "setupExitSignals": true,
-  "static": Array [
-    Object {
+  "static": [
+    {
       "directory": "<cwd>/public",
-      "publicPath": Array [
+      "publicPath": [
         "/",
       ],
-      "serveIndex": Object {
+      "serveIndex": {
         "icons": true,
       },
-      "staticOptions": Object {},
-      "watch": Object {
+      "staticOptions": {},
+      "watch": {
         "alwaysStat": true,
         "atomic": false,
         "followSymlinks": false,
@@ -2219,9 +2240,9 @@ Object {
       },
     },
   ],
-  "watchFiles": Array [],
-  "webSocketServer": Object {
-    "options": Object {
+  "watchFiles": [],
+  "webSocketServer": {
+    "options": {
       "path": "/ws",
     },
     "type": "ws",
@@ -2230,40 +2251,39 @@ Object {
 `;
 
 exports[`normalize options static publicPath is a string 1`] = `
-Object {
+{
   "allowedHosts": "auto",
   "bonjour": false,
-  "client": Object {
+  "client": {
     "logging": "info",
     "overlay": true,
     "reconnect": 10,
-    "webSocketURL": Object {},
+    "webSocketURL": {},
   },
   "compress": true,
-  "devMiddleware": Object {},
+  "devMiddleware": {},
   "historyApiFallback": false,
   "host": undefined,
   "hot": true,
   "liveReload": true,
-  "magicHtml": true,
-  "open": Array [],
+  "open": [],
   "port": "<auto>",
-  "server": Object {
-    "options": Object {},
+  "server": {
+    "options": {},
     "type": "http",
   },
   "setupExitSignals": true,
-  "static": Array [
-    Object {
+  "static": [
+    {
       "directory": "<cwd>/public",
-      "publicPath": Array [
+      "publicPath": [
         "/static/public/path/",
       ],
-      "serveIndex": Object {
+      "serveIndex": {
         "icons": true,
       },
-      "staticOptions": Object {},
-      "watch": Object {
+      "staticOptions": {},
+      "watch": {
         "alwaysStat": true,
         "atomic": false,
         "followSymlinks": false,
@@ -2276,9 +2296,9 @@ Object {
       },
     },
   ],
-  "watchFiles": Array [],
-  "webSocketServer": Object {
-    "options": Object {
+  "watchFiles": [],
+  "webSocketServer": {
+    "options": {
       "path": "/ws",
     },
     "type": "ws",
@@ -2287,41 +2307,40 @@ Object {
 `;
 
 exports[`normalize options static publicPath is an array 1`] = `
-Object {
+{
   "allowedHosts": "auto",
   "bonjour": false,
-  "client": Object {
+  "client": {
     "logging": "info",
     "overlay": true,
     "reconnect": 10,
-    "webSocketURL": Object {},
+    "webSocketURL": {},
   },
   "compress": true,
-  "devMiddleware": Object {},
+  "devMiddleware": {},
   "historyApiFallback": false,
   "host": undefined,
   "hot": true,
   "liveReload": true,
-  "magicHtml": true,
-  "open": Array [],
+  "open": [],
   "port": "<auto>",
-  "server": Object {
-    "options": Object {},
+  "server": {
+    "options": {},
     "type": "http",
   },
   "setupExitSignals": true,
-  "static": Array [
-    Object {
+  "static": [
+    {
       "directory": "<cwd>/public",
-      "publicPath": Array [
+      "publicPath": [
         "/static/public/path1/",
         "/static/public/path2/",
       ],
-      "serveIndex": Object {
+      "serveIndex": {
         "icons": true,
       },
-      "staticOptions": Object {},
-      "watch": Object {
+      "staticOptions": {},
+      "watch": {
         "alwaysStat": true,
         "atomic": false,
         "followSymlinks": false,
@@ -2334,9 +2353,9 @@ Object {
       },
     },
   ],
-  "watchFiles": Array [],
-  "webSocketServer": Object {
-    "options": Object {
+  "watchFiles": [],
+  "webSocketServer": {
+    "options": {
       "path": "/ws",
     },
     "type": "ws",
@@ -2344,41 +2363,43 @@ Object {
 }
 `;
 
-exports[`normalize options static serveIndex is an object 1`] = `
-Object {
+exports[`normalize options static serveIndex is an object more options 1`] = `
+{
   "allowedHosts": "auto",
   "bonjour": false,
-  "client": Object {
+  "client": {
     "logging": "info",
     "overlay": true,
     "reconnect": 10,
-    "webSocketURL": Object {},
+    "webSocketURL": {},
   },
   "compress": true,
-  "devMiddleware": Object {},
+  "devMiddleware": {},
   "historyApiFallback": false,
   "host": undefined,
   "hot": true,
   "liveReload": true,
-  "magicHtml": true,
-  "open": Array [],
+  "open": [],
   "port": "<auto>",
-  "server": Object {
-    "options": Object {},
+  "server": {
+    "options": {},
     "type": "http",
   },
   "setupExitSignals": true,
-  "static": Array [
-    Object {
+  "static": [
+    {
       "directory": "<cwd>/public",
-      "publicPath": Array [
+      "publicPath": [
         "/",
       ],
-      "serveIndex": Object {
-        "icons": false,
+      "serveIndex": {
+        "hidden": true,
+        "icons": true,
+        "stylesheet": "https://example.com/style.css",
+        "view": "details",
       },
-      "staticOptions": Object {},
-      "watch": Object {
+      "staticOptions": {},
+      "watch": {
         "alwaysStat": true,
         "atomic": false,
         "followSymlinks": false,
@@ -2391,9 +2412,65 @@ Object {
       },
     },
   ],
-  "watchFiles": Array [],
-  "webSocketServer": Object {
-    "options": Object {
+  "watchFiles": [],
+  "webSocketServer": {
+    "options": {
+      "path": "/ws",
+    },
+    "type": "ws",
+  },
+}
+`;
+
+exports[`normalize options static serveIndex is an object with icons false 1`] = `
+{
+  "allowedHosts": "auto",
+  "bonjour": false,
+  "client": {
+    "logging": "info",
+    "overlay": true,
+    "reconnect": 10,
+    "webSocketURL": {},
+  },
+  "compress": true,
+  "devMiddleware": {},
+  "historyApiFallback": false,
+  "host": undefined,
+  "hot": true,
+  "liveReload": true,
+  "open": [],
+  "port": "<auto>",
+  "server": {
+    "options": {},
+    "type": "http",
+  },
+  "setupExitSignals": true,
+  "static": [
+    {
+      "directory": "<cwd>/public",
+      "publicPath": [
+        "/",
+      ],
+      "serveIndex": {
+        "icons": false,
+      },
+      "staticOptions": {},
+      "watch": {
+        "alwaysStat": true,
+        "atomic": false,
+        "followSymlinks": false,
+        "ignoreInitial": true,
+        "ignorePermissionErrors": true,
+        "ignored": undefined,
+        "interval": undefined,
+        "persistent": true,
+        "usePolling": false,
+      },
+    },
+  ],
+  "watchFiles": [],
+  "webSocketServer": {
+    "options": {
       "path": "/ws",
     },
     "type": "ws",
@@ -2402,38 +2479,37 @@ Object {
 `;
 
 exports[`normalize options static serveIndex is false 1`] = `
-Object {
+{
   "allowedHosts": "auto",
   "bonjour": false,
-  "client": Object {
+  "client": {
     "logging": "info",
     "overlay": true,
     "reconnect": 10,
-    "webSocketURL": Object {},
+    "webSocketURL": {},
   },
   "compress": true,
-  "devMiddleware": Object {},
+  "devMiddleware": {},
   "historyApiFallback": false,
   "host": undefined,
   "hot": true,
   "liveReload": true,
-  "magicHtml": true,
-  "open": Array [],
+  "open": [],
   "port": "<auto>",
-  "server": Object {
-    "options": Object {},
+  "server": {
+    "options": {},
     "type": "http",
   },
   "setupExitSignals": true,
-  "static": Array [
-    Object {
+  "static": [
+    {
       "directory": "<cwd>/public",
-      "publicPath": Array [
+      "publicPath": [
         "/",
       ],
       "serveIndex": false,
-      "staticOptions": Object {},
-      "watch": Object {
+      "staticOptions": {},
+      "watch": {
         "alwaysStat": true,
         "atomic": false,
         "followSymlinks": false,
@@ -2446,9 +2522,9 @@ Object {
       },
     },
   ],
-  "watchFiles": Array [],
-  "webSocketServer": Object {
-    "options": Object {
+  "watchFiles": [],
+  "webSocketServer": {
+    "options": {
       "path": "/ws",
     },
     "type": "ws",
@@ -2457,40 +2533,39 @@ Object {
 `;
 
 exports[`normalize options static serveIndex is true 1`] = `
-Object {
+{
   "allowedHosts": "auto",
   "bonjour": false,
-  "client": Object {
+  "client": {
     "logging": "info",
     "overlay": true,
     "reconnect": 10,
-    "webSocketURL": Object {},
+    "webSocketURL": {},
   },
   "compress": true,
-  "devMiddleware": Object {},
+  "devMiddleware": {},
   "historyApiFallback": false,
   "host": undefined,
   "hot": true,
   "liveReload": true,
-  "magicHtml": true,
-  "open": Array [],
+  "open": [],
   "port": "<auto>",
-  "server": Object {
-    "options": Object {},
+  "server": {
+    "options": {},
     "type": "http",
   },
   "setupExitSignals": true,
-  "static": Array [
-    Object {
+  "static": [
+    {
       "directory": "<cwd>/public",
-      "publicPath": Array [
+      "publicPath": [
         "/",
       ],
-      "serveIndex": Object {
+      "serveIndex": {
         "icons": true,
       },
-      "staticOptions": Object {},
-      "watch": Object {
+      "staticOptions": {},
+      "watch": {
         "alwaysStat": true,
         "atomic": false,
         "followSymlinks": false,
@@ -2503,9 +2578,9 @@ Object {
       },
     },
   ],
-  "watchFiles": Array [],
-  "webSocketServer": Object {
-    "options": Object {
+  "watchFiles": [],
+  "webSocketServer": {
+    "options": {
       "path": "/ws",
     },
     "type": "ws",
@@ -2514,40 +2589,39 @@ Object {
 `;
 
 exports[`normalize options static watch is an object 1`] = `
-Object {
+{
   "allowedHosts": "auto",
   "bonjour": false,
-  "client": Object {
+  "client": {
     "logging": "info",
     "overlay": true,
     "reconnect": 10,
-    "webSocketURL": Object {},
+    "webSocketURL": {},
   },
   "compress": true,
-  "devMiddleware": Object {},
+  "devMiddleware": {},
   "historyApiFallback": false,
   "host": undefined,
   "hot": true,
   "liveReload": true,
-  "magicHtml": true,
-  "open": Array [],
+  "open": [],
   "port": "<auto>",
-  "server": Object {
-    "options": Object {},
+  "server": {
+    "options": {},
     "type": "http",
   },
   "setupExitSignals": true,
-  "static": Array [
-    Object {
+  "static": [
+    {
       "directory": "<cwd>/public",
-      "publicPath": Array [
+      "publicPath": [
         "/",
       ],
-      "serveIndex": Object {
+      "serveIndex": {
         "icons": true,
       },
-      "staticOptions": Object {},
-      "watch": Object {
+      "staticOptions": {},
+      "watch": {
         "alwaysStat": true,
         "atomic": false,
         "followSymlinks": false,
@@ -2560,9 +2634,9 @@ Object {
       },
     },
   ],
-  "watchFiles": Array [],
-  "webSocketServer": Object {
-    "options": Object {
+  "watchFiles": [],
+  "webSocketServer": {
+    "options": {
       "path": "/ws",
     },
     "type": "ws",
@@ -2571,45 +2645,44 @@ Object {
 `;
 
 exports[`normalize options static watch is false 1`] = `
-Object {
+{
   "allowedHosts": "auto",
   "bonjour": false,
-  "client": Object {
+  "client": {
     "logging": "info",
     "overlay": true,
     "reconnect": 10,
-    "webSocketURL": Object {},
+    "webSocketURL": {},
   },
   "compress": true,
-  "devMiddleware": Object {},
+  "devMiddleware": {},
   "historyApiFallback": false,
   "host": undefined,
   "hot": true,
   "liveReload": true,
-  "magicHtml": true,
-  "open": Array [],
+  "open": [],
   "port": "<auto>",
-  "server": Object {
-    "options": Object {},
+  "server": {
+    "options": {},
     "type": "http",
   },
   "setupExitSignals": true,
-  "static": Array [
-    Object {
+  "static": [
+    {
       "directory": "<cwd>/public",
-      "publicPath": Array [
+      "publicPath": [
         "/",
       ],
-      "serveIndex": Object {
+      "serveIndex": {
         "icons": true,
       },
-      "staticOptions": Object {},
+      "staticOptions": {},
       "watch": false,
     },
   ],
-  "watchFiles": Array [],
-  "webSocketServer": Object {
-    "options": Object {
+  "watchFiles": [],
+  "webSocketServer": {
+    "options": {
       "path": "/ws",
     },
     "type": "ws",
@@ -2618,40 +2691,39 @@ Object {
 `;
 
 exports[`normalize options static watch is true 1`] = `
-Object {
+{
   "allowedHosts": "auto",
   "bonjour": false,
-  "client": Object {
+  "client": {
     "logging": "info",
     "overlay": true,
     "reconnect": 10,
-    "webSocketURL": Object {},
+    "webSocketURL": {},
   },
   "compress": true,
-  "devMiddleware": Object {},
+  "devMiddleware": {},
   "historyApiFallback": false,
   "host": undefined,
   "hot": true,
   "liveReload": true,
-  "magicHtml": true,
-  "open": Array [],
+  "open": [],
   "port": "<auto>",
-  "server": Object {
-    "options": Object {},
+  "server": {
+    "options": {},
     "type": "http",
   },
   "setupExitSignals": true,
-  "static": Array [
-    Object {
+  "static": [
+    {
       "directory": "<cwd>/public",
-      "publicPath": Array [
+      "publicPath": [
         "/",
       ],
-      "serveIndex": Object {
+      "serveIndex": {
         "icons": true,
       },
-      "staticOptions": Object {},
-      "watch": Object {
+      "staticOptions": {},
+      "watch": {
         "alwaysStat": true,
         "atomic": false,
         "followSymlinks": false,
@@ -2664,9 +2736,9 @@ Object {
       },
     },
   ],
-  "watchFiles": Array [],
-  "webSocketServer": Object {
-    "options": Object {
+  "watchFiles": [],
+  "webSocketServer": {
+    "options": {
       "path": "/ws",
     },
     "type": "ws",
@@ -2675,43 +2747,42 @@ Object {
 `;
 
 exports[`normalize options username and password 1`] = `
-Object {
+{
   "allowedHosts": "auto",
   "bonjour": false,
-  "client": Object {
+  "client": {
     "logging": "info",
     "overlay": true,
     "reconnect": 10,
-    "webSocketURL": Object {
+    "webSocketURL": {
       "password": "chuntaro",
       "username": "zenitsu",
     },
   },
   "compress": true,
-  "devMiddleware": Object {},
+  "devMiddleware": {},
   "historyApiFallback": false,
   "host": undefined,
   "hot": true,
   "liveReload": true,
-  "magicHtml": true,
-  "open": Array [],
+  "open": [],
   "port": "<auto>",
-  "server": Object {
-    "options": Object {},
+  "server": {
+    "options": {},
     "type": "http",
   },
   "setupExitSignals": true,
-  "static": Array [
-    Object {
+  "static": [
+    {
       "directory": "<cwd>/public",
-      "publicPath": Array [
+      "publicPath": [
         "/",
       ],
-      "serveIndex": Object {
+      "serveIndex": {
         "icons": true,
       },
-      "staticOptions": Object {},
-      "watch": Object {
+      "staticOptions": {},
+      "watch": {
         "alwaysStat": true,
         "atomic": false,
         "followSymlinks": false,
@@ -2724,9 +2795,9 @@ Object {
       },
     },
   ],
-  "watchFiles": Array [],
-  "webSocketServer": Object {
-    "options": Object {
+  "watchFiles": [],
+  "webSocketServer": {
+    "options": {
       "path": "/ws",
     },
     "type": "ws",
@@ -2735,40 +2806,39 @@ Object {
 `;
 
 exports[`normalize options webSocketServer custom server class 1`] = `
-Object {
+{
   "allowedHosts": "auto",
   "bonjour": false,
-  "client": Object {
+  "client": {
     "logging": "info",
     "overlay": true,
     "reconnect": 10,
-    "webSocketURL": Object {},
+    "webSocketURL": {},
   },
   "compress": true,
-  "devMiddleware": Object {},
+  "devMiddleware": {},
   "historyApiFallback": false,
   "host": undefined,
   "hot": true,
   "liveReload": true,
-  "magicHtml": true,
-  "open": Array [],
+  "open": [],
   "port": "<auto>",
-  "server": Object {
-    "options": Object {},
+  "server": {
+    "options": {},
     "type": "http",
   },
   "setupExitSignals": true,
-  "static": Array [
-    Object {
+  "static": [
+    {
       "directory": "<cwd>/public",
-      "publicPath": Array [
+      "publicPath": [
         "/",
       ],
-      "serveIndex": Object {
+      "serveIndex": {
         "icons": true,
       },
-      "staticOptions": Object {},
-      "watch": Object {
+      "staticOptions": {},
+      "watch": {
         "alwaysStat": true,
         "atomic": false,
         "followSymlinks": false,
@@ -2781,9 +2851,9 @@ Object {
       },
     },
   ],
-  "watchFiles": Array [],
-  "webSocketServer": Object {
-    "options": Object {
+  "watchFiles": [],
+  "webSocketServer": {
+    "options": {
       "path": "/ws",
     },
     "type": [Function],
@@ -2792,40 +2862,39 @@ Object {
 `;
 
 exports[`normalize options webSocketServer custom server path 1`] = `
-Object {
+{
   "allowedHosts": "auto",
   "bonjour": false,
-  "client": Object {
+  "client": {
     "logging": "info",
     "overlay": true,
     "reconnect": 10,
-    "webSocketURL": Object {},
+    "webSocketURL": {},
   },
   "compress": true,
-  "devMiddleware": Object {},
+  "devMiddleware": {},
   "historyApiFallback": false,
   "host": undefined,
   "hot": true,
   "liveReload": true,
-  "magicHtml": true,
-  "open": Array [],
+  "open": [],
   "port": "<auto>",
-  "server": Object {
-    "options": Object {},
+  "server": {
+    "options": {},
     "type": "http",
   },
   "setupExitSignals": true,
-  "static": Array [
-    Object {
+  "static": [
+    {
       "directory": "<cwd>/public",
-      "publicPath": Array [
+      "publicPath": [
         "/",
       ],
-      "serveIndex": Object {
+      "serveIndex": {
         "icons": true,
       },
-      "staticOptions": Object {},
-      "watch": Object {
+      "staticOptions": {},
+      "watch": {
         "alwaysStat": true,
         "atomic": false,
         "followSymlinks": false,
@@ -2838,9 +2907,9 @@ Object {
       },
     },
   ],
-  "watchFiles": Array [],
-  "webSocketServer": Object {
-    "options": Object {
+  "watchFiles": [],
+  "webSocketServer": {
+    "options": {
       "path": "/ws",
     },
     "type": "/path/to/custom/server/",

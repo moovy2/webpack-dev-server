@@ -8,14 +8,16 @@ const runBrowser = require("../helpers/run-browser");
 const port = require("../ports-map")["options-request-response"];
 
 const createWaiting = () => {
-  let reslove;
+  let resolve;
   let reject;
+
   const waiting = new Promise((resolve$, reject$) => {
-    reslove = resolve$;
+    resolve = resolve$;
     reject = reject$;
   });
+
   return {
-    reslove,
+    resolve,
     reject,
     waiting,
   };
@@ -26,20 +28,26 @@ describe("handle options-request correctly", () => {
     const compiler = webpack(config);
     const [portForServer, portForApp] = port;
     const closeApp = await (async () => {
-      const { reslove, waiting } = createWaiting();
+      const { resolve, waiting } = createWaiting();
       const app = new Express();
+
       app.get("/", (req, res) => {
         res.sendStatus(200);
       });
+
       const server = app.listen(portForApp, () => {
-        reslove();
+        resolve();
       });
+
       await waiting;
+
       return async () => {
-        const { reslove: reslove2, waiting: waiting2 } = createWaiting();
+        const { resolve: resolve2, waiting: waiting2 } = createWaiting();
+
         server.close(() => {
-          reslove2();
+          resolve2();
         });
+
         await waiting2;
       };
     })();
@@ -51,30 +59,46 @@ describe("handle options-request correctly", () => {
           "Access-Control-Allow-Headers": "*",
         },
       },
-      compiler
+      compiler,
     );
+
     await server.start();
+
     const { page, browser } = await runBrowser();
     const prefixUrl = "http://127.0.0.1";
     const htmlUrl = `${prefixUrl}:${portForServer}/test.html`;
     const appUrl = `${prefixUrl}:${portForApp}`;
-    await page.goto(appUrl);
-    const responseStatus = [];
-    page.on("response", (res) => {
-      responseStatus.push(res.status());
-    });
-    await page.evaluate(
-      (url) =>
-        window.fetch(url, {
-          headers: {
-            "another-header": "1",
-          },
-        }),
-      htmlUrl
-    );
-    await browser.close();
-    await server.stop();
-    await closeApp();
-    expect(responseStatus).toEqual([204, 200]);
+
+    try {
+      const responseStatus = [];
+
+      page.on("response", (res) => {
+        if (/test\.html$/.test(res.url())) {
+          responseStatus.push(res.status());
+        }
+      });
+
+      await page.goto(appUrl, {
+        waitUntil: "networkidle0",
+      });
+
+      await page.evaluate(
+        (url) =>
+          window.fetch(url, {
+            headers: {
+              "another-header": "1",
+            },
+          }),
+        htmlUrl,
+      );
+
+      expect(responseStatus.sort()).toEqual([200, 204]);
+    } catch (error) {
+      throw error;
+    } finally {
+      await browser.close();
+      await server.stop();
+      await closeApp();
+    }
   });
 });

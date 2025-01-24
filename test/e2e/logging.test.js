@@ -68,9 +68,9 @@ describe("logging", () => {
                 "warnings-webpack-plugin",
                 (compilation) => {
                   compilation.warnings.push(
-                    new Error("Warning from compilation")
+                    new Error("Warning from compilation"),
                   );
-                }
+                },
               );
             },
           },
@@ -88,7 +88,7 @@ describe("logging", () => {
                 "warnings-webpack-plugin",
                 (compilation) => {
                   compilation.errors.push(new Error("Error from compilation"));
-                }
+                },
               );
             },
           },
@@ -138,10 +138,10 @@ describe("logging", () => {
                 "warnings-webpack-plugin",
                 (compilation) => {
                   compilation.warnings.push(
-                    new Error("Warning from compilation")
+                    new Error("Warning from compilation"),
                   );
                   compilation.errors.push(new Error("Error from compilation"));
-                }
+                },
               );
             },
           },
@@ -164,10 +164,10 @@ describe("logging", () => {
                 "warnings-webpack-plugin",
                 (compilation) => {
                   compilation.warnings.push(
-                    new Error("Warning from compilation")
+                    new Error("Warning from compilation"),
                   );
                   compilation.errors.push(new Error("Error from compilation"));
-                }
+                },
               );
             },
           },
@@ -204,41 +204,45 @@ describe("logging", () => {
 
         const { page, browser } = await runBrowser();
 
-        const consoleMessages = [];
+        try {
+          const consoleMessages = [];
 
-        page.on("console", (message) => {
-          consoleMessages.push(message);
-        });
+          page.on("console", (message) => {
+            consoleMessages.push(message);
+          });
 
-        await page.goto(`http://localhost:${port}/`, {
-          waitUntil: "networkidle0",
-        });
-
-        if (testCase.devServerOptions && testCase.devServerOptions.static) {
-          fs.writeFileSync(
-            path.join(testCase.devServerOptions.static, "./foo.txt"),
-            "Text"
-          );
-
-          await page.waitForNavigation({
+          await page.goto(`http://localhost:${port}/`, {
             waitUntil: "networkidle0",
           });
+
+          if (testCase.devServerOptions && testCase.devServerOptions.static) {
+            fs.writeFileSync(
+              path.join(testCase.devServerOptions.static, "./foo.txt"),
+              "Text",
+            );
+
+            await page.waitForNavigation({
+              waitUntil: "networkidle0",
+            });
+          }
+
+          expect(
+            consoleMessages.map((message) =>
+              message
+                .text()
+                .replace(/\\/g, "/")
+                .replace(
+                  new RegExp(process.cwd().replace(/\\/g, "/"), "g"),
+                  "<cwd>",
+                ),
+            ),
+          ).toMatchSnapshot();
+        } catch (error) {
+          throw error;
+        } finally {
+          await browser.close();
+          await server.stop();
         }
-
-        expect(
-          consoleMessages.map((message) =>
-            message
-              .text()
-              .replace(/\\/g, "/")
-              .replace(
-                new RegExp(process.cwd().replace(/\\/g, "/"), "g"),
-                "<cwd>"
-              )
-          )
-        ).toMatchSnapshot();
-
-        await browser.close();
-        await server.stop();
       });
     });
   });

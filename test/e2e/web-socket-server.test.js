@@ -4,6 +4,7 @@ const webpack = require("webpack");
 const Server = require("../../lib/Server");
 const config = require("../fixtures/client-config/webpack.config");
 const runBrowser = require("../helpers/run-browser");
+const sessionSubscribe = require("../helpers/session-subscribe");
 const port = require("../ports-map")["web-socket-server-test"];
 
 describe("web socket server", () => {
@@ -21,36 +22,47 @@ describe("web socket server", () => {
 
     const { page, browser } = await runBrowser();
 
-    const pageErrors = [];
-    const consoleMessages = [];
+    try {
+      const pageErrors = [];
+      const consoleMessages = [];
 
-    page
-      .on("console", (message) => {
-        consoleMessages.push(message);
-      })
-      .on("pageerror", (error) => {
-        pageErrors.push(error);
+      page
+        .on("console", (message) => {
+          consoleMessages.push(message);
+        })
+        .on("pageerror", (error) => {
+          pageErrors.push(error);
+        });
+
+      const webSocketRequests = [];
+      const session = await page.target().createCDPSession();
+
+      session.on("Network.webSocketCreated", (test) => {
+        webSocketRequests.push(test);
       });
 
-    const webSocketRequests = [];
+      await session.send("Target.setAutoAttach", {
+        autoAttach: true,
+        flatten: true,
+        waitForDebuggerOnStart: true,
+      });
 
-    const client = page._client;
+      sessionSubscribe(session);
 
-    client.on("Network.webSocketCreated", (test) => {
-      webSocketRequests.push(test);
-    });
+      await page.goto(`http://127.0.0.1:${port}/`, {
+        waitUntil: "networkidle0",
+      });
 
-    await page.goto(`http://127.0.0.1:${port}/`, {
-      waitUntil: "networkidle0",
-    });
-
-    expect(webSocketRequests).toHaveLength(0);
-    expect(consoleMessages.map((message) => message.text())).toMatchSnapshot(
-      "console messages"
-    );
-    expect(pageErrors).toMatchSnapshot("page errors");
-
-    await browser.close();
-    await server.stop();
+      expect(webSocketRequests).toHaveLength(0);
+      expect(consoleMessages.map((message) => message.text())).toMatchSnapshot(
+        "console messages",
+      );
+      expect(pageErrors).toMatchSnapshot("page errors");
+    } catch (error) {
+      throw error;
+    } finally {
+      await browser.close();
+      await server.stop();
+    }
   });
 });

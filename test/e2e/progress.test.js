@@ -10,7 +10,7 @@ const port = require("../ports-map").progress;
 
 const cssFilePath = path.resolve(
   __dirname,
-  "../fixtures/reload-config-2/main.css"
+  "../fixtures/reload-config-2/main.css",
 );
 
 describe("progress", () => {
@@ -28,50 +28,63 @@ describe("progress", () => {
 
     await server.start();
 
-    const { page, browser } = await runBrowser();
+    try {
+      const { page, browser } = await runBrowser();
 
-    const consoleMessages = [];
+      const consoleMessages = [];
 
-    let doHotUpdate = false;
+      try {
+        let doHotUpdate = false;
 
-    page
-      .on("console", (message) => {
-        consoleMessages.push(message);
-      })
-      .on("request", (requestObj) => {
-        if (/\.hot-update\.(json|js)$/.test(requestObj.url())) {
-          doHotUpdate = true;
-        }
-      });
+        page
+          .on("console", (message) => {
+            consoleMessages.push(message);
+          })
+          .on("request", (interceptedRequest) => {
+            if (interceptedRequest.isInterceptResolutionHandled()) return;
 
-    await page.goto(`http://localhost:${port}/`, {
-      waitUntil: "networkidle0",
-    });
+            if (/\.hot-update\.(json|js)$/.test(interceptedRequest.url())) {
+              doHotUpdate = true;
+            }
+          });
 
-    fs.writeFileSync(cssFilePath, "body { background-color: rgb(255, 0, 0); }");
+        await page.goto(`http://localhost:${port}/`, {
+          waitUntil: "networkidle0",
+        });
 
-    await new Promise((resolve) => {
-      const timer = setInterval(() => {
-        if (doHotUpdate) {
-          clearInterval(timer);
+        fs.writeFileSync(
+          cssFilePath,
+          "body { background-color: rgb(255, 0, 0); }",
+        );
 
-          resolve();
-        }
-      }, 100);
-    });
+        await new Promise((resolve) => {
+          const timer = setInterval(() => {
+            if (doHotUpdate) {
+              clearInterval(timer);
 
-    await browser.close();
+              resolve();
+            }
+          }, 100);
+        });
+      } catch (error) {
+        throw error;
+      } finally {
+        await browser.close();
+      }
 
-    const progressConsoleMessage = consoleMessages.filter((message) =>
-      /^\[webpack-dev-server\] (\[[a-zA-Z]+\] )?[0-9]{1,3}% - /.test(
-        message.text()
-      )
-    );
+      const progressConsoleMessage = consoleMessages.filter((message) =>
+        /^\[webpack-dev-server\] (\[[a-zA-Z]+\] )?[0-9]{1,3}% - /.test(
+          message.text(),
+        ),
+      );
 
-    expect(progressConsoleMessage.length > 0).toBe(true);
+      expect(progressConsoleMessage.length > 0).toBe(true);
+    } catch (error) {
+      throw error;
+    } finally {
+      fs.unlinkSync(cssFilePath);
 
-    fs.unlinkSync(cssFilePath);
-
-    await server.stop();
+      await server.stop();
+    }
   });
 });

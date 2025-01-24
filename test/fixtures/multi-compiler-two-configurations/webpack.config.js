@@ -1,8 +1,6 @@
 "use strict";
 
-const webpack = require("webpack");
-
-const isWebpack5 = webpack.version.startsWith("5");
+const HTMLGeneratorPlugin = require("../../helpers/html-generator-plugin");
 
 module.exports = [
   {
@@ -16,16 +14,13 @@ module.exports = [
       path: "/",
       filename: "one-[name].js",
     },
-    infrastructureLogging: isWebpack5
-      ? {
-          level: "info",
-          stream: {
-            write: () => {},
-          },
-        }
-      : {
-          level: "info",
-        },
+    plugins: [new HTMLGeneratorPlugin()],
+    infrastructureLogging: {
+      level: "info",
+      stream: {
+        write: () => {},
+      },
+    },
   },
   {
     target: "web",
@@ -38,15 +33,12 @@ module.exports = [
       path: "/",
       filename: "two-[name].js",
     },
-    infrastructureLogging: isWebpack5
-      ? {
-          level: "info",
-          stream: {
-            write: () => {},
-          },
-        }
-      : {
-          level: "info",
-        },
+    plugins: [new HTMLGeneratorPlugin()],
+    infrastructureLogging: {
+      level: "info",
+      stream: {
+        write: () => {},
+      },
+    },
   },
 ];

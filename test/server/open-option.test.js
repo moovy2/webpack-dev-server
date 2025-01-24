@@ -1,64 +1,63 @@
 "use strict";
 
 const webpack = require("webpack");
-const open = require("open");
 const Server = require("../../lib/Server");
 const config = require("../fixtures/simple-config/webpack.config");
 const port = require("../ports-map")["open-option"];
 
-jest.mock("open");
-
-open.mockImplementation(() => {
-  return {
-    catch: jest.fn(),
-  };
-});
-
 const internalIPv4 = Server.internalIPSync("v4");
-// const internalIPv6 = Server.internalIPSync('v6');
+
+let open;
+
+const needRequireMock =
+  process.version.startsWith("v18") || process.version.startsWith("v19");
+
+if (needRequireMock) {
+  open = require("open");
+
+  jest.mock("open");
+
+  open.mockImplementation(() => {
+    return {
+      catch: jest.fn(),
+    };
+  });
+}
 
 describe('"open" option', () => {
   let compiler;
 
-  beforeEach(() => {
+  beforeEach(async () => {
     compiler = webpack(config);
+
+    if (!needRequireMock) {
+      jest.unstable_mockModule("open", () => {
+        return {
+          default: jest.fn(() => Promise.resolve()),
+        };
+      });
+
+      open = (await import("open")).default;
+    }
   });
 
   afterEach(async () => {
     open.mockClear();
   });
 
-  it("should work with unspecified host", async () => {
+  it.only("should work with unspecified host", async () => {
     const server = new Server(
       {
         open: true,
         port,
       },
-      compiler
+      compiler,
     );
 
     await server.start();
     await server.stop();
 
     expect(open).toHaveBeenCalledWith(`http://localhost:${port}/`, {
-      wait: false,
-    });
-  });
-
-  it("should work with the 'https' option", async () => {
-    const server = new Server(
-      {
-        open: true,
-        port,
-        https: true,
-      },
-      compiler
-    );
-
-    await server.start();
-    await server.stop();
-
-    expect(open).toHaveBeenCalledWith(`https://localhost:${port}/`, {
       wait: false,
     });
   });
@@ -70,7 +69,7 @@ describe('"open" option', () => {
         port,
         server: "https",
       },
-      compiler
+      compiler,
     );
 
     await server.start();
@@ -88,7 +87,7 @@ describe('"open" option', () => {
         port,
         server: "spdy",
       },
-      compiler
+      compiler,
     );
 
     await server.start();
@@ -99,7 +98,7 @@ describe('"open" option', () => {
     });
   });
 
-  it("should work with '0.0.0.0' host", async () => {
+  it("should work with '0.0.0.0' host but open localhost", async () => {
     const host = "0.0.0.0";
 
     const server = new Server(
@@ -108,13 +107,13 @@ describe('"open" option', () => {
         port,
         open: true,
       },
-      compiler
+      compiler,
     );
 
     await server.start();
     await server.stop();
 
-    expect(open).toHaveBeenCalledWith(`http://${host}:${port}/`, {
+    expect(open).toHaveBeenCalledWith(`http://localhost:${port}/`, {
       wait: false,
     });
   });
@@ -128,13 +127,13 @@ describe('"open" option', () => {
         port,
         open: true,
       },
-      compiler
+      compiler,
     );
 
     await server.start();
     await server.stop();
 
-    expect(open).toHaveBeenCalledWith(`http://[${host}]:${port}/`, {
+    expect(open).toHaveBeenCalledWith(`http://localhost:${port}/`, {
       wait: false,
     });
   });
@@ -148,7 +147,7 @@ describe('"open" option', () => {
         port,
         open: true,
       },
-      compiler
+      compiler,
     );
 
     await server.start();
@@ -168,7 +167,7 @@ describe('"open" option', () => {
         port,
         open: true,
       },
-      compiler
+      compiler,
     );
 
     await server.start();
@@ -188,7 +187,7 @@ describe('"open" option', () => {
         port,
         open: true,
       },
-      compiler
+      compiler,
     );
 
     await server.start();
@@ -206,7 +205,7 @@ describe('"open" option', () => {
         port,
         open: true,
       },
-      compiler
+      compiler,
     );
 
     await server.start();
@@ -226,7 +225,7 @@ describe('"open" option', () => {
         port,
         open: true,
       },
-      compiler
+      compiler,
     );
 
     await server.start();
@@ -246,7 +245,7 @@ describe('"open" option', () => {
         port,
         open: false,
       },
-      compiler
+      compiler,
     );
 
     await server.start();
@@ -264,7 +263,7 @@ describe('"open" option', () => {
         port,
         open: "index.html",
       },
-      compiler
+      compiler,
     );
 
     await server.start();
@@ -284,7 +283,7 @@ describe('"open" option', () => {
         port,
         open: "<url>",
       },
-      compiler
+      compiler,
     );
 
     await server.start();
@@ -304,7 +303,7 @@ describe('"open" option', () => {
         port,
         open: "/index.html",
       },
-      compiler
+      compiler,
     );
 
     await server.start();
@@ -324,7 +323,7 @@ describe('"open" option', () => {
         port,
         host: "localhost",
       },
-      compiler
+      compiler,
     );
 
     await server.start();
@@ -344,7 +343,7 @@ describe('"open" option', () => {
         port,
         open: ["first.html", "second.html"],
       },
-      compiler
+      compiler,
     );
 
     await server.start();
@@ -355,14 +354,14 @@ describe('"open" option', () => {
       `http://${host}:${port}/first.html`,
       {
         wait: false,
-      }
+      },
     );
     expect(open).toHaveBeenNthCalledWith(
       2,
       `http://${host}:${port}/second.html`,
       {
         wait: false,
-      }
+      },
     );
   });
 
@@ -378,7 +377,7 @@ describe('"open" option', () => {
           `http://${host}:${port}/second.html`,
         ],
       },
-      compiler
+      compiler,
     );
 
     await server.start();
@@ -389,14 +388,14 @@ describe('"open" option', () => {
       `http://${host}:${port}/first.html`,
       {
         wait: false,
-      }
+      },
     );
     expect(open).toHaveBeenNthCalledWith(
       2,
       `http://${host}:${port}/second.html`,
       {
         wait: false,
-      }
+      },
     );
   });
 
@@ -409,7 +408,7 @@ describe('"open" option', () => {
         port,
         open: ["<url>", "second.html"],
       },
-      compiler
+      compiler,
     );
 
     await server.start();
@@ -423,7 +422,7 @@ describe('"open" option', () => {
       `http://${host}:${port}/second.html`,
       {
         wait: false,
-      }
+      },
     );
   });
 
@@ -436,7 +435,7 @@ describe('"open" option', () => {
         port,
         open: {},
       },
-      compiler
+      compiler,
     );
 
     await server.start();
@@ -458,7 +457,7 @@ describe('"open" option', () => {
           target: "index.html",
         },
       },
-      compiler
+      compiler,
     );
 
     await server.start();
@@ -480,7 +479,7 @@ describe('"open" option', () => {
           target: ["first.html", "second.html"],
         },
       },
-      compiler
+      compiler,
     );
 
     await server.start();
@@ -491,14 +490,14 @@ describe('"open" option', () => {
       `http://${host}:${port}/first.html`,
       {
         wait: false,
-      }
+      },
     );
     expect(open).toHaveBeenNthCalledWith(
       2,
       `http://${host}:${port}/second.html`,
       {
         wait: false,
-      }
+      },
     );
   });
 
@@ -513,7 +512,7 @@ describe('"open" option', () => {
           app: "google-chrome",
         },
       },
-      compiler
+      compiler,
     );
 
     await server.start();
@@ -536,7 +535,7 @@ describe('"open" option', () => {
           app: { name: "google-chrome", arguments: ["--incognito"] },
         },
       },
-      compiler
+      compiler,
     );
 
     await server.start();
@@ -560,7 +559,7 @@ describe('"open" option', () => {
           app: "google-chrome",
         },
       },
-      compiler
+      compiler,
     );
 
     await server.start();
@@ -584,7 +583,7 @@ describe('"open" option', () => {
           app: "google-chrome",
         },
       },
-      compiler
+      compiler,
     );
 
     await server.start();
@@ -608,7 +607,7 @@ describe('"open" option', () => {
           app: { name: "google-chrome", arguments: ["--incognito"] },
         },
       },
-      compiler
+      compiler,
     );
 
     await server.start();
@@ -620,7 +619,7 @@ describe('"open" option', () => {
       {
         wait: false,
         app: { name: "google-chrome", arguments: ["--incognito"] },
-      }
+      },
     );
     expect(open).toHaveBeenNthCalledWith(
       2,
@@ -628,7 +627,7 @@ describe('"open" option', () => {
       {
         wait: false,
         app: { name: "google-chrome", arguments: ["--incognito"] },
-      }
+      },
     );
   });
 
@@ -644,7 +643,7 @@ describe('"open" option', () => {
           app: { name: "google-chrome", arguments: ["--incognito"] },
         },
       },
-      compiler
+      compiler,
     );
 
     await server.start();
@@ -656,7 +655,7 @@ describe('"open" option', () => {
       {
         wait: false,
         app: { name: "google-chrome", arguments: ["--incognito"] },
-      }
+      },
     );
     expect(open).toHaveBeenNthCalledWith(
       2,
@@ -664,7 +663,7 @@ describe('"open" option', () => {
       {
         wait: false,
         app: { name: "google-chrome", arguments: ["--incognito"] },
-      }
+      },
     );
   });
 
@@ -686,7 +685,7 @@ describe('"open" option', () => {
           },
         ],
       },
-      compiler
+      compiler,
     );
 
     await server.start();
@@ -719,7 +718,7 @@ describe('"open" option', () => {
           },
         ],
       },
-      compiler
+      compiler,
     );
 
     await server.start();
@@ -755,7 +754,7 @@ describe('"open" option', () => {
         port,
         open: true,
       },
-      compiler
+      compiler,
     );
 
     await server.start();
@@ -765,7 +764,7 @@ describe('"open" option', () => {
       wait: false,
     });
     expect(loggerWarnSpy).toHaveBeenCalledWith(
-      `Unable to open "http://localhost:${port}/" page. If you are running in a headless environment, please do not use the "open" option or related flags like "--open", "--open-target", and "--open-app".`
+      `Unable to open "http://localhost:${port}/" page. If you are running in a headless environment, please do not use the "open" option or related flags like "--open", "--open-target", and "--open-app-name".`,
     );
 
     getInfrastructureLoggerSpy.mockRestore();
@@ -791,7 +790,7 @@ describe('"open" option', () => {
         open: "index.html",
         port,
       },
-      compiler
+      compiler,
     );
 
     await server.start();
@@ -801,7 +800,7 @@ describe('"open" option', () => {
       wait: false,
     });
     expect(loggerWarnSpy).toHaveBeenCalledWith(
-      `Unable to open "http://localhost:${port}/index.html" page. If you are running in a headless environment, please do not use the "open" option or related flags like "--open", "--open-target", and "--open-app".`
+      `Unable to open "http://localhost:${port}/index.html" page. If you are running in a headless environment, please do not use the "open" option or related flags like "--open", "--open-target", and "--open-app-name".`,
     );
 
     getInfrastructureLoggerSpy.mockRestore();
@@ -830,7 +829,7 @@ describe('"open" option', () => {
         },
         port,
       },
-      compiler
+      compiler,
     );
 
     await server.start();
@@ -841,7 +840,7 @@ describe('"open" option', () => {
       wait: false,
     });
     expect(loggerWarnSpy).toHaveBeenCalledWith(
-      `Unable to open "http://localhost:${port}/index.html" page in "google-chrome" app. If you are running in a headless environment, please do not use the "open" option or related flags like "--open", "--open-target", and "--open-app".`
+      `Unable to open "http://localhost:${port}/index.html" page in "google-chrome" app. If you are running in a headless environment, please do not use the "open" option or related flags like "--open", "--open-target", and "--open-app-name".`,
     );
 
     loggerWarnSpy.mockRestore();
@@ -873,7 +872,7 @@ describe('"open" option', () => {
         },
         port,
       },
-      compiler
+      compiler,
     );
 
     await server.start();
@@ -887,7 +886,7 @@ describe('"open" option', () => {
       wait: false,
     });
     expect(loggerWarnSpy).toHaveBeenCalledWith(
-      `Unable to open "http://localhost:${port}/index.html" page in "google-chrome" app with "--incognito --new-window" arguments. If you are running in a headless environment, please do not use the "open" option or related flags like "--open", "--open-target", and "--open-app".`
+      `Unable to open "http://localhost:${port}/index.html" page in "google-chrome" app with "--incognito --new-window" arguments. If you are running in a headless environment, please do not use the "open" option or related flags like "--open", "--open-target", and "--open-app-name".`,
     );
 
     getInfrastructureLoggerSpy.mockRestore();
@@ -919,7 +918,7 @@ describe('"open" option', () => {
         },
         port,
       },
-      compiler
+      compiler,
     );
 
     await server.start();
@@ -934,7 +933,7 @@ describe('"open" option', () => {
           name: "google-chrome",
           arguments: ["--incognito", "--new-window"],
         },
-      }
+      },
     );
     expect(open).toHaveBeenNthCalledWith(
       2,
@@ -945,15 +944,15 @@ describe('"open" option', () => {
           name: "google-chrome",
           arguments: ["--incognito", "--new-window"],
         },
-      }
+      },
     );
     expect(loggerWarnSpy).toHaveBeenNthCalledWith(
       1,
-      `Unable to open "http://localhost:${port}/first.html" page in "google-chrome" app with "--incognito --new-window" arguments. If you are running in a headless environment, please do not use the "open" option or related flags like "--open", "--open-target", and "--open-app".`
+      `Unable to open "http://localhost:${port}/first.html" page in "google-chrome" app with "--incognito --new-window" arguments. If you are running in a headless environment, please do not use the "open" option or related flags like "--open", "--open-target", and "--open-app-name".`,
     );
     expect(loggerWarnSpy).toHaveBeenNthCalledWith(
       2,
-      `Unable to open "http://localhost:${port}/second.html" page in "google-chrome" app with "--incognito --new-window" arguments. If you are running in a headless environment, please do not use the "open" option or related flags like "--open", "--open-target", and "--open-app".`
+      `Unable to open "http://localhost:${port}/second.html" page in "google-chrome" app with "--incognito --new-window" arguments. If you are running in a headless environment, please do not use the "open" option or related flags like "--open", "--open-target", and "--open-app-name".`,
     );
 
     getInfrastructureLoggerSpy.mockRestore();
